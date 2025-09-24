@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menaka Gowda Ananda | Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js"></script>
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --bg-color: #18181b; /* Zinc 900 */
+            --text-primary: #f4f4f5; /* Zinc 100 */
+            --text-secondary: #a1a1aa; /* Zinc 400 */
+            --accent-primary: #60a5fa; /* Blue 400 */
+            --accent-secondary: #c084fc; /* Purple 400 */
+            --card-bg: #27272a; /* Zinc 800 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-secondary);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .page-content {
+            display: none;
+        }
+        .active-page {
+            display: block;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-card {
+            background: rgba(39, 39, 42, 0.6); /* Zinc 800 at 60% opacity */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-link {
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        .nav-link.active {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .btn-primary {
+            background-color: var(--accent-primary);
+            color: #18181b;
+        }
+        .btn-primary:hover {
+            background-color: var(--accent-secondary);
+        }
+        .btn-secondary {
+            background-color: var(--accent-secondary);
+            color: #18181b;
+        }
+        .btn-secondary:hover {
+             background-color: var(--accent-primary);
+        }
+        .section-title {
+            color: var(--text-primary);
+        }
+        .card-title {
+            color: var(--accent-primary);
+        }
+        .text-muted {
+            color: #71717a; /* Zinc 500 */
+        }
+        .skill-tag {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+        }
+        .cert-tag {
+            background-color: var(--accent-primary);
+            color: #18181b;
+        }
+        .social-icon {
+            color: var(--text-secondary);
+        }
+        .social-icon:hover {
+            color: var(--text-primary);
+        }
+        .footer-border {
+            border-color: #27272a; /* Zinc 800 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a onclick="showPage('home')" class="text-2xl font-bold gradient-text cursor-pointer">MGA.</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a onclick="showPage('home')" class="nav-link transition active">Home</a>
+                <a onclick="showPage('resume')" class="nav-link transition">Resume</a>
+                <a onclick="showPage('leadership-projects')" class="nav-link transition">Leadership & Projects</a>
+                <a onclick="showPage('connect')" class="nav-link transition">Let's Connect</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-zinc-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-zinc-900/90 z-40">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a onclick="showPage('home')" class="mobile-menu-link text-2xl nav-link transition">Home</a>
+            <a onclick="showPage('resume')" class="mobile-menu-link text-2xl nav-link transition">Resume</a>
+            <a onclick="showPage('leadership-projects')" class="mobile-menu-link text-2xl nav-link transition">Leadership & Projects</a>
+            <a onclick="showPage('connect')" class="mobile-menu-link text-2xl nav-link transition">Let's Connect</a>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 pt-24">
+
+        <!-- Home Page -->
+        <section id="home-page" class="page-content">
+            <div class="min-h-[85vh] flex items-center justify-center py-20">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-16 items-center">
+                    <div class="md:col-span-2">
+                        <img src="https://placehold.co/600x600/27272a/f4f4f5?text=Menaka's+Photo" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                    </div>
+                    <div class="md:col-span-3">
+                        <h1 class="text-5xl md:text-6xl font-bold mb-4">
+                            Hi, I'm <span class="gradient-text">Menaka Gowda Ananda</span>.
+                        </h1>
+                        <p class="text-secondary text-lg mb-4">
+                            I am a driven and innovative technologist currently pursuing a Master of Information Systems Management at Carnegie Mellon University. With a strong foundation in Computer Science and extensive hands-on experience at Amazon Web Services, I specialize in architecting scalable cloud solutions, developing data-driven applications, and leading impactful projects from concept to completion.
+                        </p>
+                        <p class="text-secondary text-lg">
+                            My passion lies at the intersection of technology and business strategy. As a member of the Heinz Leadership Development Program, I thrive in collaborative environments and am committed to continuous learning and driving innovation.
+                        </p>
+                        <p class="text-secondary text-lg mt-4">
+                            I enjoy leading and collaborating — from organizing college events and student clubs to mentoring and sharing knowledge. Outside tech, I’m a classical Bharatanatyam dancer, love exploring new cuisines, binge-watching shows, and taking long drives to discover new places.
+                        </p>
+                        <p class="text-secondary text-lg mt-4">
+                            This website is a place for me to share my projects, experience, and ideas. Feel free to explore and connect with me — let’s create something awesome together.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resume Page -->
+        <section id="resume-page" class="page-content py-16">
+            <div class="max-w-4xl mx-auto">
+                 <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold gradient-text">My Resume</h2>
+                     <a href="#" class="mt-4 inline-block btn-primary font-semibold py-2 px-6 rounded-lg transition">Download PDF</a>
+                </div>
+                
+                <!-- Professional Experience -->
+                <div class="mb-12">
+                    <h3 class="text-3xl font-bold section-title mb-6">Professional Experience</h3>
+                    <div class="space-y-8">
+                        <div class="glass-card rounded-lg p-6">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-xl font-semibold card-title">Cloud Support Associate</h4>
+                                <p class="text-muted text-sm">July 2024 - July 2025</p>
+                            </div>
+                            <p class="font-medium mb-2">Amazon Web Services India Private Limited</p>
+                            <ul class="list-disc list-inside text-secondary space-y-1">
+                                <li>Delivered technical consulting and architectural support to 100+ enterprise customers, specializing in Big Data and AI services.</li>
+                                <li>Troubleshoot complex issues and optimize database performance to improve reliability and scalability.</li>
+                                <li>Collaborate with cross-functional teams to resolve technical challenges and deliver efficient cloud solutions.</li>
+                            </ul>
+                        </div>
+                        <div class="glass-card rounded-lg p-6">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-xl font-semibold card-title">Cloud Support Associate Intern</h4>
+                                <p class="text-muted text-sm">March 2024 - June 2024</p>
+                            </div>
+                            <p class="font-medium mb-2">Amazon Web Services India Private Limited</p>
+                            <ul class="list-disc list-inside text-secondary space-y-1">
+                                <li>Designed and implemented an automation script for cross-account DynamoDB table data migration, reducing migration time from hours to minutes.</li>
+                                <li>Acknowledged internally and is considered to be adopted as an AWS feature.</li>
+                            </ul>
+                        </div>
+                         <div class="glass-card rounded-lg p-6">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-xl font-semibold card-title">Technical Consultant Intern</h4>
+                                <p class="text-muted text-sm">April 2023 - June 2023</p>
+                            </div>
+                            <p class="font-medium mb-2">Adobe Systems India Private Limited</p>
+                            <ul class="list-disc list-inside text-secondary space-y-1">
+                                <li>Developed and maintained Adobe Experience Manager (AEM) components, templates, and workflows.</li>
+                                <li>Configured AEM to enable web and mobile applications, ensuring seamless content management.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="mb-12">
+                    <h3 class="text-3xl font-bold section-title mb-6">Education</h3>
+                    <div class="space-y-8">
+                        <div class="glass-card rounded-lg p-6">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-xl font-semibold card-title">Master of Information Systems Management</h4>
+                                <p class="text-muted text-sm">Exp. Dec 2026</p>
+                            </div>
+                            <p class="font-medium">Carnegie Mellon University, PA</p>
+                        </div>
+                        <div class="glass-card rounded-lg p-6">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-xl font-semibold card-title">Bachelor of Computer Science Engineering</h4>
+                                <p class="text-muted text-sm">July 2024</p>
+                            </div>
+                            <p class="font-medium">Visvesvaraya Technological University, India</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills -->
+                <div class="mb-12">
+                    <h3 class="text-3xl font-bold section-title mb-6">Skills & Certifications</h3>
+                    <div class="glass-card rounded-lg p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                           <div>
+                                <h4 class="font-semibold text-lg section-title mb-3">Programming & Development</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Python</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Java</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">C++</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">HTML/CSS/JS</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Django</span>
+                                </div>
+                           </div>
+                           <div>
+                                <h4 class="font-semibold text-lg section-title mb-3">Cloud & DevOps</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Amazon Web Services (AWS)</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Terraform</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Git</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Apache Maven</span>
+                                </div>
+                           </div>
+                            <div>
+                                <h4 class="font-semibold text-lg section-title mb-3">Data & Databases</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">MySQL</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Cassandra</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">DynamoDB</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Apache Spark</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Hadoop</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Power BI</span>
+                                </div>
+                           </div>
+                            <div>
+                                <h4 class="font-semibold text-lg section-title mb-3">Machine Learning & AI</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Scikit-learn</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">TensorFlow</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">OpenCV</span>
+                                </div>
+                           </div>
+                           <div class="md:col-span-2">
+                                <h4 class="font-semibold text-lg section-title mb-3">Certifications</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="cert-tag py-1 px-3 rounded-md text-sm font-medium">AWS Certified Solutions Architect</span>
+                                    <span class="cert-tag py-1 px-3 rounded-md text-sm font-medium">AWS Certified AI Practitioner</span>
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership & Projects Page -->
+        <section id="leadership-projects-page" class="page-content py-16">
+             <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Leadership & Projects</h2>
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-16">
+                    <h3 class="text-3xl font-bold section-title mb-6">Leadership & Awards</h3>
+                    <div class="glass-card rounded-lg p-6">
+                       <ul class="list-disc list-inside text-secondary space-y-2">
+                            <li>Heinz Leadership Development Program Participant</li>
+                            <li>Class Representative (4 consecutive years), representing 200+ students.</li>
+                            <li>Rotaract Club Editorial Director (2 years)</li>
+                            <li>Elected Student Placement Co-ordinator (2 years)</li>
+                            <li>Recipient of the AWS Customer Obsession Award</li>
+                            <li>Best Paper Award at IEEE ICAIT 2024</li>
+                       </ul>
+                    </div>
+                </div>
+                <h3 class="text-3xl font-bold section-title mb-8">Professional & Academic Projects</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <!-- Project 1 -->
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <h4 class="text-xl font-semibold mb-2 card-title">DynamoDB Data Transfer Automation</h4>
+                        <p class="text-secondary mb-4 flex-grow">Developed a CloudFormation and Python (Boto3) script to automate DynamoDB migration across AWS accounts, reducing manual effort by 90% and recognized for potential adoption as an AWS feature.</p>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <h4 class="text-xl font-semibold mb-2 card-title">AI-Based Career Counselling Chatbot</h4>
+                        <p class="text-secondary mb-4 flex-grow">Built an NLP chatbot using Python and Django for personalized career guidance, leveraging text classification and knowledge graphs to improve student decision-making.</p>
+                    </div>
+                     <!-- Project 3 -->
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <h4 class="text-xl font-semibold mb-2 card-title">AI Virtual Mouse</h4>
+                        <p class="text-secondary mb-4 flex-grow">Led a team to design a gesture-based virtual mouse using OpenCV and MediaPipe, achieving 85% accuracy in real-time hand tracking and enhancing accessibility for users with motor disabilities.</p>
+                    </div>
+                    <!-- Project 4 -->
+                     <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <h4 class="text-xl font-semibold mb-2 card-title">Voice-Based Email for Visually-Impaired</h4>
+                        <p class="text-secondary mb-4 flex-grow">Created a speech-controlled email system using Google Cloud APIs and Django, enabling users to manage emails via voice commands with multi-language support.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-3xl font-bold section-title mb-8">Research Papers</h3>
+                <div class="space-y-6">
+                    <div class="glass-card rounded-lg p-6">
+                        <p class="font-medium">"Towards Hands-Free Computing: AI Virtual Mouse Interface Powered by Gestures"</p>
+                        <p class="text-muted text-sm mt-1">Published in Springer, Communications in Computer and Information Science (CCIS) series.</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-6">
+                         <p class="font-medium">"Algorithmic Vision in Movies: RBM vs Autoencoder for Movie Recognition Systems"</p>
+                        <p class="text-muted text-sm mt-1">Published in IEEE International Conference on Advances in Information Technology (ICAIT-2024). Received Best Paper Award.</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-6">
+                         <p class="font-medium">"AI Based career chatbot: Leveraging AI for Career Counseling"</p>
+                        <p class="text-muted text-sm mt-1">Published in International Journal of Advance Research and Innovative Ideas in Education (IJARIIE).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Connect Page -->
+        <section id="connect-page" class="page-content">
+             <div class="min-h-[85vh] flex items-center justify-center text-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-4 gradient-text">Let's Connect</h2>
+                    <p class="text-xl text-secondary max-w-2xl mx-auto mb-8">
+                        I'm currently open to new opportunities and collaborations. Feel free to reach out if you have a project in mind or just want to connect!
+                    </p>
+                    <a href="mailto:menakagowda2002@gmail.com" class="btn-secondary font-semibold py-3 px-8 rounded-lg transition-transform transform hover:scale-105 inline-block mb-8">
+                        Say Hello
+                    </a>
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://github.com" target="_blank" class="social-icon transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/menaka-gowda-ananda" target="_blank" class="social-icon transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 border-t footer-border">
+        <p class="text-muted">&copy; 2024 Menaka Gowda Ananda. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pageContents = document.querySelectorAll('.page-content');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+            window.showPage = (pageId) => {
+                // Hide all pages
+                pageContents.forEach(page => {
+                    page.classList.remove('active-page');
+                });
+
+                // Show the selected page
+                const activePage = document.getElementById(pageId + '-page');
+                if (activePage) {
+                    activePage.classList.add('active-page');
+                }
+
+                // Update active nav link style
+                const updateActiveLink = (links) => {
+                    links.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('onclick') === `showPage('${pageId}')`) {
+                            link.classList.add('active');
+                        }
+                    });
+                };
+                
+                updateActiveLink(navLinks);
+                updateActiveLink(mobileMenuLinks);
+
+                // Close mobile menu on navigation
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                 window.scrollTo(0, 0); // Scroll to top on page change
+            };
+
+            // --- Mobile Menu Toggle ---
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+             // --- Close mobile menu on link click ---
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Initialize to the home page
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
+
+
