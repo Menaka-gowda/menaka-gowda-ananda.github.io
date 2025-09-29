@@ -10,8 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js"></script>
     <!-- Custom Styles -->
     <style>
         :root {
@@ -91,6 +89,10 @@
             background-color: var(--accent-primary);
             color: #18181b;
         }
+        .award-tag {
+            background-color: #f59e0b; /* Amber 500 */
+            color: #18181b;
+        }
         .social-icon {
             color: var(--text-secondary);
         }
@@ -111,7 +113,8 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a onclick="showPage('home')" class="nav-link transition active">Home</a>
                 <a onclick="showPage('resume')" class="nav-link transition">Resume</a>
-                <a onclick="showPage('leadership-projects')" class="nav-link transition">Leadership & Projects</a>
+                <a onclick="showPage('research')" class="nav-link transition">Research</a>
+                <a onclick="showPage('leadership-projects')" class="nav-link transition">Projects & Leadership</a>
                 <a onclick="showPage('connect')" class="nav-link transition">Let's Connect</a>
             </div>
             <!-- Mobile Menu Button -->
@@ -126,7 +129,8 @@
         <div class="flex flex-col items-center justify-center h-full space-y-8">
             <a onclick="showPage('home')" class="mobile-menu-link text-2xl nav-link transition">Home</a>
             <a onclick="showPage('resume')" class="mobile-menu-link text-2xl nav-link transition">Resume</a>
-            <a onclick="showPage('leadership-projects')" class="mobile-menu-link text-2xl nav-link transition">Leadership & Projects</a>
+            <a onclick="showPage('research')" class="mobile-menu-link text-2xl nav-link transition">Research</a>
+            <a onclick="showPage('leadership-projects')" class="mobile-menu-link text-2xl nav-link transition">Projects & Leadership</a>
             <a onclick="showPage('connect')" class="mobile-menu-link text-2xl nav-link transition">Let's Connect</a>
         </div>
     </div>
@@ -166,7 +170,7 @@
             <div class="max-w-4xl mx-auto">
                  <div class="text-center mb-12">
                     <h2 class="text-4xl font-bold gradient-text">My Resume</h2>
-                     <a href="#" class="mt-4 inline-block btn-primary font-semibold py-2 px-6 rounded-lg transition">Download PDF</a>
+                     <a href="Menaka_Gowda_Ananda_Resume.pdf" download class="mt-4 inline-block btn-primary font-semibold py-2 px-6 rounded-lg transition">Download PDF</a>
                 </div>
                 
                 <!-- Professional Experience -->
@@ -287,23 +291,76 @@
             </div>
         </section>
 
+        <!-- Research Page -->
+        <section id="research-page" class="page-content py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Research & Publications</h2>
+             <div class="max-w-4xl mx-auto">
+                <div class="space-y-6">
+                    <div class="glass-card rounded-lg p-6">
+                        <a href="https://link.springer.com/" target="_blank" class="font-medium text-lg text-primary hover:text-accent-primary transition duration-300">"Towards Hands-Free Computing: AI Virtual Mouse Interface Powered by Gestures"</a>
+                        <p class="text-secondary my-2">This paper introduces a novel human-computer interaction system using OpenCV and MediaPipe for gesture-based mouse control, aiming to improve accessibility for users with motor impairments.</p>
+                        <p class="text-muted text-sm mt-1">Published in Springer, Communications in Computer and Information Science (CCIS) series.</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-6">
+                        <div class="flex justify-between items-start">
+                            <a href="https://ieeexplore.ieee.org/" target="_blank" class="font-medium text-lg text-primary hover:text-accent-primary transition duration-300">"Algorithmic Vision in Movies: RBM vs Autoencoder for Movie Recognition Systems"</a>
+                            <span class="award-tag py-1 px-3 rounded-md text-xs font-bold whitespace-nowrap ml-4">🏆 Best Paper Award</span>
+                        </div>
+                        <p class="text-secondary my-2">This award-winning research compares the effectiveness of Restricted Boltzmann Machines (RBM) and Autoencoders in building movie recommendation and recognition systems, analyzing their performance on large datasets.</p>
+                        <p class="text-muted text-sm mt-1">Published in IEEE International Conference on Advances in Information Technology (ICAIT-2024).</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-6">
+                         <a href="https://ijariie.com/AdminUploadPdf/AI_based_career_chatbot__Leveraging_AI_for_Career_Counseling_ijariie23829.pdf" target="_blank" class="font-medium text-lg text-primary hover:text-accent-primary transition duration-300">"AI Based career chatbot: Leveraging AI for Career Counseling"</a>
+                         <p class="text-secondary my-2">This publication details the architecture and implementation of an NLP-powered chatbot designed to provide students with personalized, data-driven career guidance, improving upon traditional counseling methods.</p>
+                        <p class="text-muted text-sm mt-1">Published in International Journal of Advance Research and Innovative Ideas in Education (IJARIIE).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <!-- Leadership & Projects Page -->
         <section id="leadership-projects-page" class="page-content py-16">
-             <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Leadership & Projects</h2>
+             <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Projects & Leadership</h2>
             <div class="max-w-5xl mx-auto">
-                <div class="mb-16">
-                    <h3 class="text-3xl font-bold section-title mb-6">Leadership & Awards</h3>
+                
+                <h3 class="text-3xl font-bold section-title mb-8">Leadership Roles</h3>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <!-- Leadership Role 1 -->
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <img src="heinz-leadership.jpg" alt="Photo related to the Heinz Leadership Program" class="rounded-md mb-4 aspect-video object-cover">
+                        <h4 class="text-xl font-semibold mb-2 card-title">Heinz Leadership Development Program</h4>
+                        <p class="text-secondary flex-grow">Selected participant in a competitive program focused on developing strategic leadership, communication, and policy analysis skills.</p>
+                    </div>
+                    <!-- Leadership Role 2 -->
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <img src="class-rep.jpg" alt="Photo related to being a Class Representative" class="rounded-md mb-4 aspect-video object-cover">
+                        <h4 class="text-xl font-semibold mb-2 card-title">Class Representative (4 Years)</h4>
+                        <p class="text-secondary flex-grow">Acted as the primary liaison between a cohort of 200+ students and university faculty, advocating for student needs and resolving academic issues.</p>
+                    </div>
+                    <!-- Leadership Role 3 -->
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <img src="rotaract-club.jpg" alt="Photo from the Rotaract Club" class="rounded-md mb-4 aspect-video object-cover">
+                        <h4 class="text-xl font-semibold mb-2 card-title">Rotaract Club Editorial Director (2 Years)</h4>
+                        <p class="text-secondary flex-grow">Led content strategy and communication initiatives for the university's Rotaract Club, driving member engagement and promoting community service events.</p>
+                    </div>
+                    <!-- Leadership Role 4 -->
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <img src="placement-coordinator.jpg" alt="Photo related to being a Student Placement Coordinator" class="rounded-md mb-4 aspect-video object-cover">
+                        <h4 class="text-xl font-semibold mb-2 card-title">Student Placement Co-ordinator (2 Years)</h4>
+                        <p class="text-secondary flex-grow">Elected to facilitate the campus recruitment process, connecting students with career opportunities and coordinating with corporate recruiters.</p>
+                    </div>
+                </div>
+
+                 <div class="mb-16">
+                    <h3 class="text-3xl font-bold section-title mb-6">Awards</h3>
                     <div class="glass-card rounded-lg p-6">
                        <ul class="list-disc list-inside text-secondary space-y-2">
-                            <li>Heinz Leadership Development Program Participant</li>
-                            <li>Class Representative (4 consecutive years), representing 200+ students.</li>
-                            <li>Rotaract Club Editorial Director (2 years)</li>
-                            <li>Elected Student Placement Co-ordinator (2 years)</li>
                             <li>Recipient of the AWS Customer Obsession Award</li>
                             <li>Best Paper Award at IEEE ICAIT 2024</li>
                        </ul>
                     </div>
                 </div>
+
                 <h3 class="text-3xl font-bold section-title mb-8">Professional & Academic Projects</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                     <!-- Project 1 -->
@@ -325,22 +382,6 @@
                      <div class="glass-card rounded-lg p-6 flex flex-col">
                         <h4 class="text-xl font-semibold mb-2 card-title">Voice-Based Email for Visually-Impaired</h4>
                         <p class="text-secondary mb-4 flex-grow">Created a speech-controlled email system using Google Cloud APIs and Django, enabling users to manage emails via voice commands with multi-language support.</p>
-                    </div>
-                </div>
-
-                <h3 class="text-3xl font-bold section-title mb-8">Research Papers</h3>
-                <div class="space-y-6">
-                    <div class="glass-card rounded-lg p-6">
-                        <p class="font-medium">"Towards Hands-Free Computing: AI Virtual Mouse Interface Powered by Gestures"</p>
-                        <p class="text-muted text-sm mt-1">Published in Springer, Communications in Computer and Information Science (CCIS) series.</p>
-                    </div>
-                    <div class="glass-card rounded-lg p-6">
-                         <p class="font-medium">"Algorithmic Vision in Movies: RBM vs Autoencoder for Movie Recognition Systems"</p>
-                        <p class="text-muted text-sm mt-1">Published in IEEE International Conference on Advances in Information Technology (ICAIT-2024). Received Best Paper Award.</p>
-                    </div>
-                    <div class="glass-card rounded-lg p-6">
-                         <p class="font-medium">"AI Based career chatbot: Leveraging AI for Career Counseling"</p>
-                        <p class="text-muted text-sm mt-1">Published in International Journal of Advance Research and Innovative Ideas in Education (IJARIIE).</p>
                     </div>
                 </div>
             </div>
@@ -436,3 +477,6 @@
     </script>
 </body>
 </html>
+
+
+
