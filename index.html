@@ -31,6 +31,7 @@
             animation: gradient-animation 20s ease infinite;
             color: var(--text-secondary);
         }
+        
         /* Single-Page Scroll Setup */
         html {
             scroll-behavior: smooth;
@@ -54,7 +55,6 @@
             overflow: hidden;
             transform-style: preserve-3d;
         }
-        /* ... (rest of glass-card styles omitted for brevity) ... */
         .glass-card:hover {
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
@@ -85,13 +85,6 @@
         .nav-link.active {
             color: var(--text-primary);
             font-weight: 600;
-        }
-        .btn-primary, .btn-secondary {
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover, .btn-secondary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .btn-primary {
             background-color: var(--accent-primary);
@@ -140,7 +133,7 @@
             border-color: #27272a; /* Zinc 800 */
         }
 
-        /* --- Scroll Animation Classes (Enhanced) --- */
+        /* --- Scroll Animation Classes (New/Enhanced) --- */
         .animated-item {
             opacity: 0;
             transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -151,7 +144,6 @@
             transform: translateY(0) translateX(0) scale(1);
         }
         
-        /* New Entrance Animations */
         .fade-in-up {
             transform: translateY(20px);
         }
@@ -162,7 +154,7 @@
             transform: scale(0.95);
         }
 
-        /* --- Resume Timeline Design --- */
+        /* --- Resume Timeline Design (New) --- */
         .timeline-container {
             position: relative;
         }
@@ -203,11 +195,8 @@
         }
 
         /* --- Parallax for Profile Picture --- */
-        #home .parallax-image-container {
-            overflow: hidden;
-        }
         #profile-image {
-            will-change: transform; /* Hint to the browser for performance */
+            will-change: transform; 
         }
     </style>
 </head>
@@ -244,7 +233,7 @@
         <section id="home" class="py-16">
             <div class="min-h-[85vh] flex items-center justify-center py-20">
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-16 items-center">
-                    <div class="md:col-span-2 parallax-image-container">
+                    <div class="md:col-span-2">
                         <img id="profile-image" src="photo.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover animated-item fade-in-left">
                     </div>
                     <div class="md:col-span-3 animated-item scale-in">
@@ -358,7 +347,7 @@
                                     <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Apache Maven</span>
                                 </div>
                            </div>
-                           <div>
+                            <div>
                                 <h4 class="font-semibold text-lg section-title mb-3">Data & Databases</h4>
                                 <div class="flex flex-wrap gap-2">
                                     <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">MySQL</span>
@@ -421,20 +410,20 @@
                     <h3 class="text-3xl font-bold section-title mb-8 animated-item fade-in-left">Research & Publications</h3>
                     <div class="space-y-6 mb-16">
                         <div class="glass-card rounded-lg p-6 animated-item fade-in-up">
-                            <a href="https://link.springer.com/" target="_blank" class="font-medium text-lg text-primary hover:text-accent-primary transition duration-300">"Towards Hands-Free Computing: AI Virtual Mouse Interface Powered by Gestures"</a>
+                            <a href="https://link.springer.com/" target="_blank" class="font-medium text-lg section-title hover:text-accent-primary transition duration-300">"Towards Hands-Free Computing: AI Virtual Mouse Interface Powered by Gestures"</a>
                             <p class="text-secondary my-2">This paper introduces a novel human-computer interaction system using OpenCV and MediaPipe for gesture-based mouse control, aiming to improve accessibility for users with motor impairments.</p>
                             <p class="text-muted text-sm mt-1">Published in Springer, Communications in Computer and Information Science (CCIS) series.</p>
                         </div>
                         <div class="glass-card rounded-lg p-6 animated-item fade-in-up">
                             <div class="flex justify-between items-start">
-                                <a href="https://ieeexplore.ieee.org/" target="_blank" class="font-medium text-lg text-primary hover:text-accent-primary transition duration-300">"Algorithmic Vision in Movies: RBM vs Autoencoder for Movie Recognition Systems"</a>
+                                <a href="https://ieeexplore.ieee.org/" target="_blank" class="font-medium text-lg section-title hover:text-accent-primary transition duration-300">"Algorithmic Vision in Movies: RBM vs Autoencoder for Movie Recognition Systems"</a>
                                 <span class="award-tag py-1 px-3 rounded-md text-xs font-bold whitespace-nowrap ml-4">🏆 Best Paper Award</span>
                             </div>
                             <p class="text-secondary my-2">This award-winning research compares the effectiveness of Restricted Boltzmann Machines (RBM) and Autoencoders in building movie recommendation and recognition systems, analyzing their performance on large datasets.</p>
                             <p class="text-muted text-sm mt-1">Published in IEEE International Conference on Advances in Information Technology (ICAIT-2024).</p>
                         </div>
                         <div class="glass-card rounded-lg p-6 animated-item fade-in-up">
-                             <a href="https://ijariie.com/AdminUploadPdf/AI_based_career_chatbot__Leveraging_AI_for_Career_Counseling_ijariie23829.pdf" target="_blank" class="font-medium text-lg text-primary hover:text-accent-primary transition duration-300">"AI Based career chatbot: Leveraging AI for Career Counseling"</a>
+                             <a href="https://ijariie.com/AdminUploadPdf/AI_based_career_chatbot__Leveraging_AI_for_Career_Counseling_ijariie23829.pdf" target="_blank" class="font-medium text-lg section-title hover:text-accent-primary transition duration-300">"AI Based career chatbot: Leveraging AI for Career Counseling"</a>
                              <p class="text-secondary my-2">This publication details the architecture and implementation of an NLP-powered chatbot designed to provide students with personalized, data-driven career guidance, improving upon traditional counseling methods.</p>
                             <p class="text-muted text-sm mt-1">Published in International Journal of Advance Research and Innovative Ideas in Education (IJARIIE).</p>
                         </div>
@@ -526,30 +515,26 @@
             const sections = document.querySelectorAll('main section');
             const allLinks = [...navLinks, ...mobileMenuLinks];
 
-            // --- Parallax Effect ---
+            // --- Parallax Effect (Keeps image centered but moves subtly on scroll) ---
             const profileImage = document.getElementById('profile-image');
             const homeSection = document.getElementById('home');
 
             const applyParallax = () => {
                 if (profileImage && homeSection) {
                     const rect = homeSection.getBoundingClientRect();
-                    // Calculate center of home section in viewport
-                    const center = rect.top + rect.height / 2;
                     // Calculate movement based on scroll position relative to viewport center
+                    const center = rect.top + rect.height / 2;
                     const movement = (window.innerHeight / 2 - center) / 20; 
 
-                    // Apply subtle vertical move (less intense on mobile)
                     profileImage.style.transform = `translateY(${movement}px)`;
                 }
             };
             
-            // Listen to scroll event to apply parallax
             window.addEventListener('scroll', applyParallax);
-            // Apply immediately on load
             applyParallax();
 
 
-            // --- Spotlight & 3D Tilt Effect (Kept as is) ---
+            // --- Spotlight & 3D Tilt Effect ---
             document.querySelectorAll('.glass-card').forEach(card => {
                 card.addEventListener('mousemove', e => {
                     const rect = card.getBoundingClientRect();
@@ -571,7 +556,7 @@
             });
 
 
-            // --- Intersection Observer for Animations (Using new classes) ---
+            // --- Intersection Observer for Animations (Triggers scroll-in effects) ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -593,7 +578,6 @@
                 threshold: 0.1
             });
             
-            // Observe all animation targets
             document.querySelectorAll('.animated-item, .stagger-container').forEach(el => observer.observe(el));
 
 
@@ -607,7 +591,6 @@
                 entries.forEach(entry => {
                     const sectionId = entry.target.getAttribute('id');
                     
-                    // The rootMargin is set to trigger 'active' when a section is near the top
                     if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
                          allLinks.forEach(link => link.classList.remove('active'));
                         
@@ -619,7 +602,6 @@
                     }
                 });
             }, {
-                // Adjust this rootMargin to fine-tune when the link becomes 'active'
                 rootMargin: "-40% 0px -40% 0px", 
                 threshold: [0, 0.25, 0.5, 0.75, 1.0]
             });
