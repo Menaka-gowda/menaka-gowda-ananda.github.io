@@ -10,28 +10,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* --- PURE BLACK, TEAL (#426E6F) & METALLIC GOLD PALETTE --- */
-            --bg-color: #000000; /* Pure Black - Requested */
-            --text-primary: #FFFFFF; /* Pure White */
-            --text-secondary: #C3C7C7; /* Muted Light Grey */
-            --accent-primary: #426E6F; /* User's Custom Color (Deep Teal/Cyan) */
-            --gold-metallic: #FFC72C; /* Rich Gold */
-            --card-bg: #121212; /* Dark Charcoal (Card Base) */
+            /* --- SLEEK OBSIDIAN & CYBER GOLD PALETTE --- */
+            --bg-color: #0A0E13; /* Obsidian Dark */
+            --text-primary: #F8F8F2; /* Light White */
+            --text-secondary: #97A6B6; /* Muted Grey */
+            --accent-primary: #8BE9FD; /* Cyber Blue/Cyan */
+            --gold-metallic: #FFD700; /* Pure Metallic Gold */
+            --card-bg: #171C25; /* Deep Slate (Card Base) */
         }
 
-        @keyframes gradient-animation {
-            /* Subtle animation on the background to add depth to pure black */
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 5px var(--gold-metallic); }
+            50% { box-shadow: 0 0 15px var(--gold-metallic), 0 0 5px var(--gold-metallic); }
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(-45deg, var(--bg-color), #0a0a0a, var(--card-bg), #000000); 
-            background-size: 400% 400%;
-            animation: gradient-animation 20s ease infinite;
+            background-color: var(--bg-color); 
             color: var(--text-secondary);
+            transition: background-color 0.3s ease;
         }
         
         /* Single-Page Scroll Setup */
@@ -41,64 +38,67 @@
         }
         
         /* General Design */
-        .gradient-text {
-            /* Primary color applied via a subtle gradient for depth */
-            background: linear-gradient(to right, var(--accent-primary), #609091); 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .cyber-glow-text {
+            /* Name and main titles use the cyber blue with a subtle shadow */
+            color: var(--accent-primary);
+            text-shadow: 0 0 8px rgba(139, 233, 253, 0.4);
+            transition: text-shadow 0.3s ease;
         }
 
         /* Class for the shiny metallic gold effect on small elements */
-        .metallic-gold-effect {
+        .metallic-gold-glow {
             color: var(--gold-metallic);
-            text-shadow: 0 0 4px rgba(255, 199, 44, 0.4), /* Soft glow */
-                         0 0 8px rgba(255, 199, 44, 0.1);
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* Stronger gold glow */
+            transition: all 0.3s ease-in-out;
         }
 
         .glass-card {
-            /* Background is dark charcoal with slight transparency */
-            background: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Card background from deep slate color */
+            background: var(--card-bg);
+            border: 1px solid rgba(139, 233, 253, 0.15); /* Subtle border from accent color */
             transition: all 0.3s ease-out;
             position: relative;
             overflow: hidden;
-            transform-style: preserve-3d;
         }
         .glass-card:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            box-shadow: 0 5px 25px rgba(139, 233, 253, 0.1); /* Subtle hover shadow */
+            border-color: rgba(139, 233, 253, 0.3);
         }
+        
+        /* Navigation Styles */
         .nav-link {
             color: var(--text-secondary);
             cursor: pointer;
             transition: color 0.2s ease-in-out;
         }
         .nav-link:hover {
-            color: var(--text-primary);
+            color: var(--accent-primary);
         }
         .nav-link.active {
-            color: var(--gold-metallic); /* Active link is metallic gold */
+            color: var(--gold-metallic); 
             font-weight: 600;
         }
+        
+        /* Button Styles */
         .btn-primary {
-            background-color: var(--gold-metallic); /* Gold Button */
-            color: var(--bg-color); /* Black text on gold */
+            background-color: var(--gold-metallic); 
+            color: var(--bg-color); 
             font-weight: 700;
         }
         .btn-primary:hover {
-            background-color: var(--accent-primary); /* Teal hover */
-            color: var(--text-primary);
+            background-color: var(--accent-primary); 
+            color: var(--bg-color);
         }
         .btn-secondary {
-            background-color: var(--accent-primary); /* Teal Button */
-            color: var(--text-primary); 
+            background-color: var(--accent-primary); 
+            color: var(--bg-color); 
         }
         .btn-secondary:hover {
-             background-color: var(--gold-metallic); /* Gold hover */
+             background-color: var(--gold-metallic); 
              color: var(--bg-color);
         }
+        
+        /* Text & Element Styles */
         .section-title {
             color: var(--text-primary);
         }
@@ -106,28 +106,37 @@
             color: var(--accent-primary);
         }
         .text-muted {
-            color: #94A3B8;
+            color: var(--text-secondary);
         }
         .skill-tag {
             background-color: var(--card-bg);
             color: var(--text-primary);
-            border: 1px solid var(--accent-primary); /* Teal border for skills */
+            border: 1px solid var(--accent-primary);
+            transition: background-color 0.2s;
+        }
+        .skill-tag:hover {
+            background-color: var(--accent-primary);
+            color: var(--bg-color);
         }
         .cert-tag {
             background-color: var(--accent-primary);
-            color: var(--text-primary); 
+            color: var(--bg-color); 
         }
         .award-tag {
             background-color: var(--gold-metallic); 
             color: var(--bg-color);
+            animation: pulse-glow 3s infinite; /* Make award tag shine */
         }
+        
+        /* Social Icons (Small Gold Stuff) */
         .social-icon {
             color: var(--text-secondary);
             transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
         }
         .social-icon:hover {
-            color: var(--gold-metallic); /* Gold hover for metallic look */
+            color: var(--gold-metallic);
             transform: scale(1.1);
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
         }
         .footer-border {
             border-color: var(--card-bg); 
@@ -145,7 +154,7 @@
             transform: translateY(0);
         }
 
-        /* --- Resume Timeline Design --- */
+        /* --- Resume Timeline Design (Gold Accents) --- */
         .timeline-container {
             position: relative;
         }
@@ -157,8 +166,8 @@
             left: 12px;
             bottom: 0;
             width: 3px;
-            background-color: var(--accent-primary);
-            opacity: 0.5; 
+            background-color: var(--card-bg);
+            opacity: 0.8; 
             border-radius: 2px;
         }
         .timeline-item {
@@ -174,12 +183,12 @@
             top: 8px;
             width: 15px;
             height: 15px;
-            background-color: var(--card-bg); 
-            border: 4px solid var(--gold-metallic); /* Gold Border */
+            background-color: var(--bg-color); 
+            border: 4px solid var(--gold-metallic); 
             border-radius: 50%;
             z-index: 10;
             transition: transform 0.3s ease;
-            box-shadow: 0 0 5px var(--gold-metallic); /* Subtle gold glow */
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.5); 
         }
         .timeline-item:hover::before {
             transform: scale(1.2);
@@ -191,7 +200,7 @@
 
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="text-2xl font-bold metallic-gold-effect cursor-pointer transition-transform duration-300 hover:scale-105">MGA.</a>
+            <a href="#home" class="text-2xl font-bold metallic-gold-glow cursor-pointer transition-transform duration-300 hover:scale-105">MGA.</a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#home" class="nav-link transition active">Home</a>
                 <a href="#resume" class="nav-link transition">Resume</a>
@@ -221,11 +230,11 @@
             <div class="min-h-[85vh] flex items-center justify-center py-20">
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-16 items-center">
                     <div class="md:col-span-2 animated-item">
-                        <img src="image_335987.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover border border-accent-primary">
+                        <img src="image_335987.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover border border-accent-primary opacity-90">
                     </div>
                     <div class="md:col-span-3 animated-item">
                         <h1 class="text-5xl md:text-6xl font-bold mb-4 text-white">
-                            Hi, I'm <span class="gradient-text">Menaka Gowda Ananda</span>.
+                            Hi, I'm <span class="cyber-glow-text">Menaka Gowda Ananda</span>.
                         </h1>
                         <p class="text-secondary text-lg mb-4">
                             I am a driven and innovative technologist currently pursuing a Master of Information Systems Management at Carnegie Mellon University. With a strong foundation in Computer Science and extensive hands-on experience at Amazon Web Services, I specialize in architecting scalable cloud solutions, developing data-driven applications, and leading impactful projects from concept to completion.
@@ -247,7 +256,7 @@
         <section id="resume" class="py-16">
             <div class="max-w-4xl mx-auto">
                  <div class="text-center mb-12 animated-item">
-                    <h2 class="text-4xl font-bold gradient-text">My Resume</h2>
+                    <h2 class="text-4xl font-bold cyber-glow-text">My Resume</h2>
                      <a href="Menaka_Gowda_Ananda_Resume.pdf" target="_blank" class="mt-4 inline-block btn-primary font-semibold py-2 px-6 rounded-lg transition">Download PDF</a>
                 </div>
                 
@@ -259,7 +268,7 @@
                                 <h4 class="text-xl font-semibold card-title">Cloud Support Associate</h4>
                                 <p class="text-muted text-sm">July 2024 - July 2025</p>
                             </div>
-                            <p class="font-medium mb-2">Amazon Web Services India Private Limited</p>
+                            <p class="font-medium mb-2 text-primary">Amazon Web Services India Private Limited</p>
                             <ul class="list-disc list-inside text-secondary space-y-1">
                                 <li>Delivered technical consulting and architectural support to 100+ enterprise customers, specializing in Big Data and AI services.</li>
                                 <li>Troubleshoot complex issues and optimize database performance to improve reliability and scalability.</li>
@@ -271,7 +280,7 @@
                                 <h4 class="text-xl font-semibold card-title">Cloud Support Associate Intern</h4>
                                 <p class="text-muted text-sm">March 2024 - June 2024</p>
                             </div>
-                            <p class="font-medium mb-2">Amazon Web Services India Private Limited</p>
+                            <p class="font-medium mb-2 text-primary">Amazon Web Services India Private Limited</p>
                             <ul class="list-disc list-inside text-secondary space-y-1">
                                 <li>Designed and implemented an automation script for cross-account DynamoDB table data migration, reducing migration time from hours to minutes.</li>
                                 <li>Acknowledged internally and is considered to be adopted as an AWS feature.</li>
@@ -282,7 +291,7 @@
                                 <h4 class="text-xl font-semibold card-title">Technical Consultant Intern</h4>
                                 <p class="text-muted text-sm">April 2023 - June 2023</p>
                             </div>
-                            <p class="font-medium mb-2">Adobe Systems India Private Limited</p>
+                            <p class="font-medium mb-2 text-primary">Adobe Systems India Private Limited</p>
                             <ul class="list-disc list-inside text-secondary space-y-1">
                                 <li>Developed and maintained Adobe Experience Manager (AEM) components, templates, and workflows.</li>
                                 <li>Configured AEM to enable web and mobile applications, ensuring seamless content management.</li>
@@ -299,14 +308,14 @@
                                 <h4 class="text-xl font-semibold card-title">Master of Information Systems Management</h4>
                                 <p class="text-muted text-sm">Exp. Dec 2026</p>
                             </div>
-                            <p class="font-medium">Carnegie Mellon University, PA</p>
+                            <p class="font-medium text-primary">Carnegie Mellon University, PA</p>
                         </div>
                         <div class="glass-card rounded-lg p-6 animated-item timeline-item">
                             <div class="flex justify-between items-baseline">
                                 <h4 class="text-xl font-semibold card-title">Bachelor of Computer Science Engineering</h4>
                                 <p class="text-muted text-sm">July 2024</p>
                             </div>
-                            <p class="font-medium">Visvesvaraya Technological University, India</p>
+                            <p class="font-medium text-primary">Visvesvaraya Technological University, India</p>
                         </div>
                     </div>
                 </div>
@@ -368,7 +377,7 @@
         
         <section id="projects-research" class="py-16">
              <div class="text-center mb-12 animated-item">
-                <h2 class="text-4xl font-bold gradient-text">Projects & Research</h2>
+                <h2 class="text-4xl font-bold cyber-glow-text">Projects & Research</h2>
             </div>
             <div class="max-w-5xl mx-auto">
                 <div class="stagger-container">
@@ -421,7 +430,7 @@
 
         <section id="leadership" class="py-16">
             <div class="text-center mb-12 animated-item">
-                <h2 class="text-4xl font-bold gradient-text">Leadership & Awards</h2>
+                <h2 class="text-4xl font-bold cyber-glow-text">Leadership & Awards</h2>
             </div>
             <div class="max-w-5xl mx-auto">
                 <div class="stagger-container">
@@ -454,8 +463,8 @@
                     <h3 class="text-3xl font-bold section-title mb-6">Awards</h3>
                     <div class="glass-card rounded-lg p-6">
                        <ul class="list-disc list-inside text-secondary space-y-2">
-                            <li>Recipient of the AWS Customer Obsession Award</li>
-                            <li>Best Paper Award at IEEE ICAIT 2024</li>
+                            <li class="flex items-center"><span class="metallic-gold-glow mr-2">⭐</span> Recipient of the AWS Customer Obsession Award</li>
+                            <li class="flex items-center"><span class="metallic-gold-glow mr-2">⭐</span> Best Paper Award at IEEE ICAIT 2024</li>
                        </ul>
                     </div>
                 </div>
@@ -465,7 +474,7 @@
         <section id="connect" class="py-16">
              <div class="min-h-[85vh] flex items-center justify-center text-center">
                 <div class="animated-item">
-                    <h2 class="text-4xl font-bold mb-4 gradient-text">Let's Connect</h2>
+                    <h2 class="text-4xl font-bold mb-4 cyber-glow-text">Let's Connect</h2>
                     <p class="text-xl text-secondary max-w-2xl mx-auto mb-8">
                         I'm currently open to new opportunities and collaborations. Feel free to reach out if you have a project in mind or just want to connect!
                     </p>
@@ -521,9 +530,9 @@
                     card.style.setProperty('--mouse-y', `${y}px`);
 
                     const { width, height } = rect;
-                    const rotateX = (y / height - 0.5) * -5; 
-                    const rotateY = (x / width - 0.5) * 5;  
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`; 
+                    const rotateX = (y / height - 0.5) * -3; 
+                    const rotateY = (x / width - 0.5) * 3;  
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`; 
                 });
 
                 card.addEventListener('mouseleave', () => {
