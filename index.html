@@ -10,13 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* --- NEW COLOR PALETTE --- */
-            --bg-color: #000000; /* Black */
-            --text-primary: #ffffff; /* White */
-            --text-secondary: #c4c4c4; /* Adjusted from user input for readability on black background */
-            --accent-primary: #00415a; /* Dark Teal/Blue - Used for timeline/main line */
-            --accent-secondary: #ffcccc; /* Light Pink - Used for buttons/secondary line */
-            --card-bg: #001f2b; /* Very Dark Blue/Teal - Used for card background base */
+            /* --- NEW CLASSY GOLD PALETTE --- */
+            --bg-color: #151515; /* Very Dark Charcoal */
+            --text-primary: #F3F4F6; /* Clean Off-White */
+            --text-secondary: #9CA3AF; /* Soft Cool Grey */
+            --accent-primary: #D6A66D; /* Sophisticated Copper/Gold */
+            --accent-secondary: #B8860B; /* Dark Goldenrod/Bronze */
+            --card-bg: #1E293B; /* Deep Slate/Navy Blue */
         }
 
         @keyframes gradient-animation {
@@ -27,8 +27,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            /* Gradient uses new dark colors */
-            background: linear-gradient(-45deg, #000000, #000f1a, #001f2b, #101010); 
+            /* Gradient using the new dark colors */
+            background: linear-gradient(-45deg, var(--bg-color), #283748, var(--card-bg), #1a1a1a); 
             background-size: 400% 400%;
             animation: gradient-animation 20s ease infinite;
             color: var(--text-secondary);
@@ -42,15 +42,15 @@
         
         /* General Design */
         .gradient-text {
-            /* Gradient from Primary Accent (Dark Teal) to Secondary Accent (Light Pink) */
+            /* Gradient from Gold to Bronze */
             background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .glass-card {
-            /* Background uses transparent version of the new --card-bg (#001f2b -> 0, 31, 43) */
-            background: rgba(0, 31, 43, 0.6);
+            /* Background uses transparent version of the new --card-bg */
+            background: rgba(30, 41, 59, 0.6); 
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -87,24 +87,22 @@
             color: var(--text-primary);
         }
         .nav-link.active {
-            color: var(--text-primary);
+            color: var(--accent-primary);
             font-weight: 600;
         }
         .btn-primary {
             background-color: var(--accent-primary);
-            color: var(--text-primary); /* Text color changed to white for contrast on dark accent */
+            color: var(--bg-color); /* Dark text on light accent */
         }
         .btn-primary:hover {
             background-color: var(--accent-secondary);
-            color: #18181b; /* Dark text on light accent */
         }
         .btn-secondary {
             background-color: var(--accent-secondary);
-            color: #18181b; /* Dark text on light accent */
+            color: var(--bg-color); /* Dark text on light accent */
         }
         .btn-secondary:hover {
              background-color: var(--accent-primary);
-             color: var(--text-primary); /* Light text on dark accent */
         }
         .section-title {
             color: var(--text-primary);
@@ -120,19 +118,19 @@
             color: var(--text-primary);
         }
         .cert-tag {
-            background-color: var(--accent-primary); /* Dark Teal */
-            color: var(--text-primary); /* White text for contrast */
+            background-color: var(--accent-secondary); /* Bronze */
+            color: var(--bg-color); /* Dark text for contrast */
         }
         .award-tag {
-            background-color: #663300; /* Dark Brown */
-            color: var(--text-primary); /* White text for contrast */
+            background-color: var(--accent-primary); /* Gold/Copper */
+            color: var(--bg-color); /* Dark text for contrast */
         }
         .social-icon {
             color: var(--text-secondary);
             transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
         }
         .social-icon:hover {
-            color: var(--text-primary);
+            color: var(--accent-primary);
             transform: scale(1.1);
         }
         .footer-border {
@@ -173,7 +171,7 @@
             bottom: 0;
             width: 3px;
             background-color: var(--accent-primary);
-            opacity: 0.5; /* Increased opacity for visibility */
+            opacity: 0.5; 
             border-radius: 2px;
         }
         .timeline-item {
