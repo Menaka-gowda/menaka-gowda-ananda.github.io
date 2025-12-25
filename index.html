@@ -9,14 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
+        : root {
             /* --- NEW CLASSY GOLD PALETTE --- */
             --bg-color: #151515; /* Very Dark Charcoal */
             --text-primary: #F3F4F6; /* Clean Off-White */
             --text-secondary: #9CA3AF; /* Soft Cool Grey */
-            --accent-primary: #D6A66D; /* Sophisticated Copper/Gold */
-            --accent-secondary: #B8860B; /* Dark Goldenrod/Bronze */
-            --card-bg: #1E293B; /* Deep Slate/Navy Blue */
+            --accent-primary: #D6A66D; /* Sophisticated Copper/Gold (Primary Highlight) */
+            --accent-secondary: #B8860B; /* Dark Goldenrod/Bronze (Secondary Highlight/Buttons) */
+            --card-bg: #1E293B; /* Deep Slate/Navy Blue (Card Base) */
         }
 
         @keyframes gradient-animation {
@@ -27,7 +27,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            /* Gradient using the new dark colors */
+            /* Gradient using the new dark colors for subtle background movement */
             background: linear-gradient(-45deg, var(--bg-color), #283748, var(--card-bg), #1a1a1a); 
             background-size: 400% 400%;
             animation: gradient-animation 20s ease infinite;
