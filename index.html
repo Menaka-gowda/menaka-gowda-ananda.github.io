@@ -567,7 +567,8 @@
                         // Handle Staggered/Grouped Animations
                         if (entry.target.classList.contains('stagger-container')) {
                             // Find elements that use the basic fade-up animation within the container
-                            const children = entry.target.querySelectorAll('.animated-item');
+                            // This ensures the timeline items appear sequentially
+                            const children = entry.target.querySelectorAll('.animated-item, .fade-in-left');
                             children.forEach((child, index) => {
                                 setTimeout(() => {
                                     child.classList.add('visible');
