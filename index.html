@@ -31,12 +31,12 @@
             animation: gradient-animation 20s ease infinite;
             color: var(--text-secondary);
         }
-        /* Crucial: Enable smooth scrolling to anchors */
+        /* Single-Page Scroll Setup */
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 6rem; /* Adjust for fixed header height */
+            scroll-padding-top: 6rem; /* Ensures the fixed header doesn't cover the section title */
         }
-        /* Removed .page-content and .active-page styles as they are no longer needed */
+        /* REMOVED: .page-content and .active-page styles */
         
         .gradient-text {
             background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
@@ -458,7 +458,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Updated script to handle scroll-based active link highlighting
             
             const navLinks = document.querySelectorAll('#header a.nav-link');
             const mobileMenuLinks = document.querySelectorAll('#mobile-menu a.mobile-menu-link');
@@ -467,7 +466,7 @@
             const sections = document.querySelectorAll('main section');
             const allLinks = [...navLinks, ...mobileMenuLinks];
 
-            // --- Spotlight & 3D Tilt Effect ---
+            // --- Spotlight & 3D Tilt Effect (Kept as is) ---
             document.querySelectorAll('.glass-card').forEach(card => {
                 card.addEventListener('mousemove', e => {
                     const rect = card.getBoundingClientRect();
@@ -480,8 +479,8 @@
 
                     // 3D Tilt
                     const { width, height } = rect;
-                    const rotateX = (y / height - 0.5) * -15; // Max 7.5 deg tilt
-                    const rotateY = (x / width - 0.5) * 15;  // Max 7.5 deg tilt
+                    const rotateX = (y / height - 0.5) * -15; 
+                    const rotateY = (x / width - 0.5) * 15;  
                     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
                 });
 
@@ -491,7 +490,7 @@
             });
 
 
-            // --- Intersection Observer for Animations ---
+            // --- Intersection Observer for Animations (Kept as is) ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -500,34 +499,27 @@
                             children.forEach((child, index) => {
                                 setTimeout(() => {
                                     child.classList.add('visible');
-                                }, index * 150); // 150ms delay between items
+                                }, index * 150); 
                             });
                         } else {
                              entry.target.classList.add('visible');
                         }
-                        // Keep observing if you want re-trigger on scroll back up, but for a one-time animation, unobserve is better.
-                        // observer.unobserve(entry.target); 
-                    } else if (!entry.target.classList.contains('stagger-container')) {
-                        // Optionally remove 'visible' when scrolling out of view (good for multi-page)
-                        // entry.target.classList.remove('visible'); 
-                    }
+                        // Stop observing for one-time animation
+                        observer.unobserve(entry.target);
+                    } 
                 });
             }, {
                 threshold: 0.1
             });
             
-            const observeElements = () => {
-                document.querySelectorAll('.animated-item, .stagger-container').forEach(el => observer.observe(el));
-            }
-            
-            // Initial observation
-            observeElements();
+            // Observe all animation targets
+            document.querySelectorAll('.animated-item, .stagger-container').forEach(el => observer.observe(el));
 
 
-            // --- Intersection Observer for Active Navigation Link ---
-            // Create map of section IDs to their corresponding navigation links
+            // --- Intersection Observer for Active Navigation Link (New for single-page) ---
             const sectionIdToLinkMap = new Map();
             sections.forEach(section => {
+                // Use the section ID directly (e.g., 'home', 'resume')
                 sectionIdToLinkMap.set(section.id, document.querySelector(`#header a[href="#${section.id}"]`));
             });
 
@@ -535,26 +527,22 @@
                 entries.forEach(entry => {
                     const sectionId = entry.target.getAttribute('id');
                     
+                    // Trigger active when the section is close to the top of the viewport
                     if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
-                         // Remove 'active' from all
+                         // Remove 'active' from all links first
                         allLinks.forEach(link => link.classList.remove('active'));
                         
-                        // Add 'active' to the corresponding main nav link
+                        // Add 'active' to the corresponding links
                         const mainNavLink = sectionIdToLinkMap.get(sectionId);
-                        if (mainNavLink) {
-                            mainNavLink.classList.add('active');
-                        }
-                        
-                        // Also add 'active' to the corresponding mobile menu link
                         const mobileNavLink = document.querySelector(`#mobile-menu a[href="#${sectionId}"]`);
-                        if (mobileNavLink) {
-                            mobileNavLink.classList.add('active');
-                        }
-
+                        
+                        if (mainNavLink) { mainNavLink.classList.add('active'); }
+                        if (mobileNavLink) { mobileNavLink.classList.add('active'); }
                     }
                 });
             }, {
-                rootMargin: "-25% 0px -75% 0px", // Check when section is in the top quarter of the viewport
+                // rootMargin helps trigger the active state when the section hits the fixed header
+                rootMargin: "-40% 0px -40% 0px", 
                 threshold: [0, 0.25, 0.5, 0.75, 1.0]
             });
 
@@ -568,10 +556,10 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
-             // Close mobile menu on link click and trigger smooth scroll
+             // Close mobile menu on anchor click
             mobileMenuLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    // Use a small delay to allow the scroll to start before closing
+                    // Small delay for smooth scroll initiation
                     setTimeout(() => {
                         mobileMenu.classList.add('hidden');
                     }, 100); 
