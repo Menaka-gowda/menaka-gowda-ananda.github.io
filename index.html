@@ -120,7 +120,10 @@
             color: var(--accent-primary); 
             transform: scale(1.1);
         }
-        /* Animation Classes */
+        
+        /* === ANIMATION CLASSES === */
+        
+        /* Base Fade-Up (Standard items) */
         .animated-item {
             opacity: 0;
             transform: translateY(20px);
@@ -129,6 +132,69 @@
         .animated-item.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        /* Fade-In Left (For Images/Left Block) */
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Scale-In (For Main Text Block) */
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Parallax Container for the Image */
+        .parallax-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .parallax-image {
+            transition: transform 0.1s linear; /* Smooth parallax movement */
+        }
+        
+        /* === VERTICAL TIMELINE STYLES === */
+        .timeline {
+            position: relative;
+            padding-left: 3rem; /* Space for the line */
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 1.5rem; /* Center the line */
+            bottom: 0;
+            width: 2px;
+            background-color: var(--accent-secondary); 
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 1rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 1.1rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent-primary);
+            border: 2px solid var(--card-bg); 
+            z-index: 10;
         }
     </style>
 </head>
@@ -166,11 +232,11 @@
             <div class="min-h-[85vh] flex items-center justify-center">
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-16 items-center w-full">
                     <div class="md:col-span-2 space-y-10">
-                        <div class="aesthetic-card rounded-lg p-6 animated-item">
-                            <img src="photo.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-md w-full h-auto object-cover border-4" style="border-color: var(--accent-secondary);">
+                        <div class="aesthetic-card rounded-lg p-6 fade-in-left parallax-container">
+                            <img id="profile-image" src="photo.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-md w-full h-auto object-cover border-4 parallax-image" style="border-color: var(--accent-secondary); will-change: transform;">
                         </div>
                         
-                        <div class="aesthetic-card rounded-lg p-6 animated-item">
+                        <div class="aesthetic-card rounded-lg p-6 fade-in-left">
                             <h3 class="text-2xl font-bold section-title mb-4">Let's Connect</h3>
                             <p class="text-secondary text-base mb-6">
                                 I'm actively seeking opportunities in cloud architecture and data systems. Feel free to reach out to discuss collaborations or career advice.
@@ -187,7 +253,7 @@
                     </div>
 
                     <div class="md:col-span-3 space-y-10">
-                        <div class="animated-item">
+                        <div class="scale-in">
                             <h1 class="text-4xl md:text-5xl font-bold mb-4 section-title">
                                 Hi, I'm <span class="aesthetic-accent-text">Menaka Gowda Ananda</span>.
                             </h1>
@@ -222,84 +288,95 @@
             <div class="max-w-4xl mx-auto">
                  <div class="text-center mb-12 animated-item">
                     <h2 class="text-4xl font-bold section-title">My Resume</h2>
-                    <a href="Menaka_Gowda_Ananda_Resume.pdf" target="_blank" class="mt-4 inline-block btn-primary font-semibold py-2 px-6 rounded-lg transition">Download PDF</a>
+                     <a href="Menaka_Gowda_Ananda_Resume.pdf" target="_blank" class="mt-4 inline-block btn-primary font-semibold py-2 px-6 rounded-lg transition">Download PDF</a>
                 </div>
                 
                 <div class="mb-12 stagger-container">
-                    <h3 class="text-3xl font-bold section-title mb-6 animated-item">Professional Experience</h3>
-                    <div class="space-y-8">
+                    <h3 class="text-3xl font-bold section-title mb-8 animated-item">Professional Experience</h3>
+                    
+                    <div class="timeline">
                         
-                        <div class="aesthetic-card rounded-lg p-6 animated-item">
-                            <div class="flex justify-between items-baseline">
-                                <h4 class="text-xl font-semibold card-title">Cloud Support Associate</h4>
-                                <p class="text-secondary text-sm">July 2024 - July 2025</p>
+                        <div class="timeline-item">
+                            <div class="aesthetic-card rounded-lg p-6 animated-item">
+                                <div class="flex justify-between items-baseline">
+                                    <h4 class="text-xl font-semibold card-title">Cloud Support Associate</h4>
+                                    <p class="text-secondary text-sm font-medium">July 2024 - July 2025</p>
+                                </div>
+                                <p class="font-medium mb-2 section-title">Amazon Web Services India Private Limited</p>
+                                <ul class="list-disc list-inside text-secondary space-y-1 text-sm">
+                                    <li>Supported 300+ enterprise clients in designing and optimizing data pipelines, dashboards, and analytics workflows on AWS.</li>
+                                    <li>Built ETL processes using S3, Glue, Lambda, and DynamoDB to automate reporting and improve data accuracy by 25%.</li>
+                                    <li>Created CloudWatch and Power BI dashboards to track performance metrics and support business decision-making.</li>
+                                    <li>Collaborated with stakeholders to identify trends, optimize cloud resources, and improve operational efficiency.</li>
+                                </ul>
                             </div>
-                            <p class="font-medium mb-2 section-title">Amazon Web Services India Private Limited</p>
-                            <ul class="list-disc list-inside text-secondary space-y-1">
-                                <li>Supported 300+ enterprise clients in designing and optimizing data pipelines, dashboards, and analytics workflows on AWS.</li>
-                                <li>Built ETL processes using S3, Glue, Lambda, and DynamoDB to automate reporting and improve data accuracy by 25%.</li>
-                                <li>Created CloudWatch and Power BI dashboards to track performance metrics and support business decision-making.</li>
-                                <li>Collaborated with stakeholders to identify trends, optimize cloud resources, and improve operational efficiency.</li>
-                            </ul>
                         </div>
                         
-                        <div class="aesthetic-card rounded-lg p-6 animated-item">
-                            <div class="flex justify-between items-baseline">
-                                <h4 class="text-xl font-semibold card-title">Cloud Support Associate Intern</h4>
-                                <p class="text-secondary text-sm">March 2024 - June 2024</p>
+                        <div class="timeline-item">
+                            <div class="aesthetic-card rounded-lg p-6 animated-item">
+                                <div class="flex justify-between items-baseline">
+                                    <h4 class="text-xl font-semibold card-title">Cloud Support Associate Intern</h4>
+                                    <p class="text-secondary text-sm font-medium">March 2024 - June 2024</p>
+                                </div>
+                                <p class="font-medium mb-2 section-title">Amazon Web Services India Private Limited</p>
+                                <ul class="list-disc list-inside text-secondary space-y-1 text-sm">
+                                    <li>Developed a Python and CloudFormation pipeline for cross-account DynamoDB to S3 to Redshift data transfers.</li>
+                                    <li>Partnered with data teams to validate transformations, improving accuracy and consistency across analytics reports.</li>
+                                </ul>
                             </div>
-                            <p class="font-medium mb-2 section-title">Amazon Web Services India Private Limited</p>
-                            <ul class="list-disc list-inside text-secondary space-y-1">
-                                <li>Developed a Python and CloudFormation pipeline for cross-account DynamoDB to S3 to Redshift data transfers.</li>
-                                <li>Partnered with data teams to validate transformations, improving accuracy and consistency across analytics reports.</li>
-                            </ul>
                         </div>
 
-                        <div class="aesthetic-card rounded-lg p-6 animated-item">
-                            <div class="flex justify-between items-baseline">
-                                <h4 class="text-xl font-semibold card-title">Technical Consultant Intern</h4>
-                                <p class="text-secondary text-sm">April 2023 - June 2023</p>
+                        <div class="timeline-item">
+                            <div class="aesthetic-card rounded-lg p-6 animated-item">
+                                <div class="flex justify-between items-baseline">
+                                    <h4 class="text-xl font-semibold card-title">Technical Consultant Intern</h4>
+                                    <p class="text-secondary text-sm font-medium">April 2023 - June 2023</p>
+                                </div>
+                                <p class="font-medium mb-2 section-title">Adobe Systems India Private Limited</p>
+                                <ul class="list-disc list-inside text-secondary space-y-1 text-sm">
+                                    <li>Gathered requirements from clients and developed reusable data components for AEM-based content platforms.</li>
+                                    <li>Improved query response time and optimized database design to support data-driven web applications.</li>
+                                </ul>
                             </div>
-                            <p class="font-medium mb-2 section-title">Adobe Systems India Private Limited</p>
-                            <ul class="list-disc list-inside text-secondary space-y-1">
-                                <li>Gathered requirements from clients and developed reusable data components for AEM-based content platforms.</li>
-                                <li>Improved query response time and optimized database design to support data-driven web applications.</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
                 
                 <div class="mb-12 stagger-container">
-                    <h3 class="text-3xl font-bold section-title mb-6 animated-item">Academic Experience</h3>
-                    <div class="space-y-8">
-                        <div class="aesthetic-card rounded-lg p-6 animated-item">
-                            <div class="flex justify-between items-baseline">
-                                <h4 class="text-xl font-semibold card-title">Teaching Assistant - Communication in XR Extended Reality</h4>
-                                <p class="text-secondary text-sm">Jan 2026 - May 2026</p>
+                    <h3 class="text-3xl font-bold section-title mb-8 animated-item">Academic Experience & Education</h3>
+                    <div class="timeline">
+                        
+                        <div class="timeline-item">
+                            <div class="aesthetic-card rounded-lg p-6 animated-item">
+                                <div class="flex justify-between items-baseline">
+                                    <h4 class="text-xl font-semibold card-title">Teaching Assistant - Communication in XR Extended Reality</h4>
+                                    <p class="text-secondary text-sm font-medium">Jan 2026 - May 2026</p>
+                                </div>
+                                <p class="font-medium mb-2 section-title">Carnegie Mellon University, Heinz College</p>
+                                <p class="text-secondary text-base">Supporting instruction and student projects related to communication and technology development in Extended Reality environments.</p>
                             </div>
-                            <p class="font-medium mb-2 section-title">Carnegie Mellon University, Heinz College</p>
-                            <p class="text-secondary text-base">Supporting instruction and student projects related to communication and technology development in Extended Reality environments.</p>
                         </div>
-                    </div>
-                </div>
 
-                <div class="mb-12 stagger-container">
-                    <h3 class="text-3xl font-bold section-title mb-6 animated-item">Education</h3>
-                    <div class="space-y-8">
-                        <div class="aesthetic-card rounded-lg p-6 animated-item">
-                            <div class="flex justify-between items-baseline">
-                                <h4 class="text-xl font-semibold card-title">Master of Information Systems Management</h4>
-                                <p class="text-secondary text-sm">Exp. Dec 2026</p>
+                        <div class="timeline-item">
+                            <div class="aesthetic-card rounded-lg p-6 animated-item">
+                                <div class="flex justify-between items-baseline">
+                                    <h4 class="text-xl font-semibold card-title">Master of Information Systems Management</h4>
+                                    <p class="text-secondary text-sm font-medium">Exp. Dec 2026</p>
+                                </div>
+                                <p class="font-medium section-title">Carnegie Mellon University, PA</p>
                             </div>
-                            <p class="font-medium section-title">Carnegie Mellon University, PA</p>
                         </div>
-                        <div class="aesthetic-card rounded-lg p-6 animated-item">
-                            <div class="flex justify-between items-baseline">
-                                <h4 class="text-xl font-semibold card-title">Bachelor of Computer Science Engineering</h4>
-                                <p class="text-secondary text-sm">July 2024</p>
+
+                        <div class="timeline-item">
+                            <div class="aesthetic-card rounded-lg p-6 animated-item">
+                                <div class="flex justify-between items-baseline">
+                                    <h4 class="text-xl font-semibold card-title">Bachelor of Computer Science Engineering</h4>
+                                    <p class="text-secondary text-sm font-medium">July 2024</p>
+                                </div>
+                                <p class="font-medium section-title">Visvesvaraya Technological University, India</p>
                             </div>
-                            <p class="font-medium section-title">Visvesvaraya Technological University, India</p>
                         </div>
+
                     </div>
                 </div>
                 
@@ -401,7 +478,7 @@
                      <h3 class="text-3xl font-bold section-title mb-8 animated-item">Leadership Roles</h3>
                      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                         
-                        <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
+                        <div class="aesthetic-card rounded-lg p-6 flex flex-col fade-in-left">
                             <img src="heinz-leadership.jpg" alt="Photo of Menaka in CMU Heinz Leadership Program" class="rounded-md w-full h-40 object-cover mb-4">
                             <h4 class="text-xl font-semibold mb-2 card-title">Heinz Leadership Development Program</h4>
                             <p class="text-secondary flex-grow">Selected participant in a competitive CMU program focusing on strategic leadership and policy analysis.</p>
@@ -409,21 +486,21 @@
                         </div>
                         
                         <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
-                             <img src="class-rep.jpg" alt="Photo of Menaka as Class Representative" class="rounded-md w-full h-40 object-cover mb-4">
+                            <img src="class-rep.jpg" alt="Photo of Menaka as Class Representative" class="rounded-md w-full h-40 object-cover mb-4">
                             <h4 class="text-xl font-semibold mb-2 card-title">Class Representative (4 Years)</h4>
                             <p class="text-secondary flex-grow">Primary liaison between 200+ students and university faculty, successfully advocating for academic improvements.</p>
                             <span class="skill-tag py-1 px-3 rounded-md text-xs self-start mt-4">Student Government</span>
                         </div>
                         
-                        <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
-                             <img src="rotaract-club.jpg" alt="Photo of Menaka as Rotaract Club Editorial Director" class="rounded-md w-full h-40 object-cover mb-4">
+                        <div class="aesthetic-card rounded-lg p-6 flex flex-col fade-in-left">
+                            <img src="rotaract-club.jpg" alt="Photo of Menaka as Rotaract Club Editorial Director" class="rounded-md w-full h-40 object-cover mb-4">
                             <h4 class="text-xl font-semibold mb-2 card-title">Rotaract Club Editorial Director</h4>
                             <p class="text-secondary flex-grow">Led content strategy for the university's Rotaract Club, driving member engagement and community service.</p>
                             <span class="skill-tag py-1 px-3 rounded-md text-xs self-start mt-4">Service & Outreach</span>
                         </div>
                         
                         <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
-                             <img src="placement-coordinator.jpg" alt="Photo of Menaka as Placement Co-ordinator" class="rounded-md w-full h-40 object-cover mb-4">
+                            <img src="placement-coordinator.jpg" alt="Photo of Menaka as Placement Co-ordinator" class="rounded-md w-full h-40 object-cover mb-4">
                             <h4 class="text-xl font-semibold mb-2 card-title">Student Placement Co-ordinator</h4>
                             <p class="text-secondary flex-grow">Facilitated campus recruitment, connecting students with corporate recruiters and managing logistics.</p>
                             <span class="skill-tag py-1 px-3 rounded-md text-xs self-start mt-4">Career Services</span>
@@ -462,6 +539,8 @@
             const allNavLinks = document.querySelectorAll('.nav-link'); 
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const sections = document.querySelectorAll('main section');
+            const profileImage = document.getElementById('profile-image');
 
             // --- Card Shadow Tilt Effect ---
             document.querySelectorAll('.aesthetic-card').forEach(card => {
@@ -481,19 +560,27 @@
                 });
             });
 
-            // --- Intersection Observer for Animations (Fade-in and Stagger) ---
+            // --- Intersection Observer for Animations (Scroll-In Effects) ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Handle Staggered/Grouped Animations
                         if (entry.target.classList.contains('stagger-container')) {
+                            // Find elements that use the basic fade-up animation within the container
                             const children = entry.target.querySelectorAll('.animated-item');
                             children.forEach((child, index) => {
                                 setTimeout(() => {
                                     child.classList.add('visible');
                                 }, index * 100); 
                             });
-                        } else {
-                             entry.target.classList.add('visible');
+                        } 
+                        // Handle individual, custom animations
+                        else if (entry.target.classList.contains('fade-in-left')) {
+                            entry.target.classList.add('visible');
+                        } else if (entry.target.classList.contains('scale-in')) {
+                            entry.target.classList.add('visible');
+                        } else if (entry.target.classList.contains('animated-item')) {
+                            entry.target.classList.add('visible');
                         }
                     }
                 });
@@ -501,28 +588,24 @@
                 threshold: 0.1
             });
             
-            // Observe all items
-            document.querySelectorAll('.animated-item, .stagger-container').forEach(el => observer.observe(el));
+            // Observe all animation classes
+            document.querySelectorAll('.animated-item, .stagger-container, .fade-in-left, .scale-in').forEach(el => observer.observe(el));
 
 
             // --- Navigation Logic (Scroll-Spy) for Single Page ---
-            const sections = document.querySelectorAll('main section');
-
             const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const currentSectionId = entry.target.id;
                         
-                        // Remove active class from all links
                         allNavLinks.forEach(link => link.classList.remove('active'));
-
-                        // Add active class to the link that matches the current section
                         document.querySelectorAll(`a[href="#${currentSectionId}"]`).forEach(link => {
                             link.classList.add('active');
                         });
                     }
                 });
             }, {
+                // Trigger the active state when the section is centered in the viewport
                 rootMargin: '-50% 0px -50% 0px' 
             });
 
@@ -530,6 +613,22 @@
                 sectionObserver.observe(section);
             });
 
+
+            // --- Parallax Effect for Profile Image ---
+            function updateParallax() {
+                if (profileImage) {
+                    const scrollPosition = window.scrollY;
+                    // Move the image up slightly slower than the page (1/8th speed)
+                    const translateY = scrollPosition * 0.125; 
+                    profileImage.style.transform = `translateY(${translateY}px)`;
+                }
+            }
+
+            // Only run parallax on desktop viewports
+            if (window.innerWidth >= 768) { 
+                window.addEventListener('scroll', updateParallax);
+                updateParallax(); // Initial call
+            }
 
             // --- Mobile Menu Toggle ---
             mobileMenuButton.addEventListener('click', () => {
