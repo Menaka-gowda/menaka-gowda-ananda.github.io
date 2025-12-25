@@ -10,16 +10,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* --- DEEP CHARCOAL & GOLD PALETTE (Inspired by Photo, using Gold, No Orange) --- */
-            --bg-color: #0F1113; /* Very Dark Black/Charcoal */
+            /* --- PURE BLACK, TEAL (#426E6F) & METALLIC GOLD PALETTE --- */
+            --bg-color: #000000; /* Pure Black - Requested */
             --text-primary: #FFFFFF; /* Pure White */
             --text-secondary: #C3C7C7; /* Muted Light Grey */
-            --accent-primary: #FFC72C; /* Rich Gold (Primary Highlight) */
-            --accent-secondary: #9C6644; /* Muted Terracotta Brown (Secondary Highlight/Buttons) */
-            --card-bg: #1F2225; /* Dark Charcoal (Card Base) */
+            --accent-primary: #426E6F; /* User's Custom Color (Deep Teal/Cyan) */
+            --gold-metallic: #FFC72C; /* Rich Gold */
+            --card-bg: #121212; /* Dark Charcoal (Card Base) */
         }
 
         @keyframes gradient-animation {
+            /* Subtle animation on the background to add depth to pure black */
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
@@ -27,8 +28,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            /* Subtly moving background with dark shades */
-            background: linear-gradient(-45deg, var(--bg-color), #14171a, var(--card-bg), #000000); 
+            background: linear-gradient(-45deg, var(--bg-color), #0a0a0a, var(--card-bg), #000000); 
             background-size: 400% 400%;
             animation: gradient-animation 20s ease infinite;
             color: var(--text-secondary);
@@ -37,19 +37,28 @@
         /* Single-Page Scroll Setup */
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 6rem; /* Ensures fixed header doesn't cover content */
+            scroll-padding-top: 6rem;
         }
         
         /* General Design */
         .gradient-text {
-            /* Gradient from Gold to Terracotta/Brown */
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            /* Primary color applied via a subtle gradient for depth */
+            background: linear-gradient(to right, var(--accent-primary), #609091); 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        /* Class for the shiny metallic gold effect on small elements */
+        .metallic-gold-effect {
+            color: var(--gold-metallic);
+            text-shadow: 0 0 4px rgba(255, 199, 44, 0.4), /* Soft glow */
+                         0 0 8px rgba(255, 199, 44, 0.1);
+        }
+
         .glass-card {
-            background: rgba(31, 34, 37, 0.7); /* Transparent Card BG */
+            /* Background is dark charcoal with slight transparency */
+            background: rgba(18, 18, 18, 0.8);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -59,23 +68,7 @@
             transform-style: preserve-3d;
         }
         .glass-card:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: var(--mouse-y, 0px);
-            left: var(--mouse-x, 0px);
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        .glass-card:hover::before {
-            opacity: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
         }
         .nav-link {
             color: var(--text-secondary);
@@ -86,23 +79,24 @@
             color: var(--text-primary);
         }
         .nav-link.active {
-            color: var(--accent-primary);
+            color: var(--gold-metallic); /* Active link is metallic gold */
             font-weight: 600;
         }
         .btn-primary {
-            background-color: var(--accent-primary); /* Gold */
-            color: var(--bg-color); /* Dark text on light accent */
+            background-color: var(--gold-metallic); /* Gold Button */
+            color: var(--bg-color); /* Black text on gold */
+            font-weight: 700;
         }
         .btn-primary:hover {
-            background-color: var(--accent-secondary); /* Terracotta */
+            background-color: var(--accent-primary); /* Teal hover */
             color: var(--text-primary);
         }
         .btn-secondary {
-            background-color: var(--accent-secondary); /* Terracotta */
+            background-color: var(--accent-primary); /* Teal Button */
             color: var(--text-primary); 
         }
         .btn-secondary:hover {
-             background-color: var(--accent-primary); /* Gold */
+             background-color: var(--gold-metallic); /* Gold hover */
              color: var(--bg-color);
         }
         .section-title {
@@ -112,26 +106,27 @@
             color: var(--accent-primary);
         }
         .text-muted {
-            color: #94A3B8; /* Slate 400 for date contrast */
+            color: #94A3B8;
         }
         .skill-tag {
             background-color: var(--card-bg);
             color: var(--text-primary);
+            border: 1px solid var(--accent-primary); /* Teal border for skills */
         }
         .cert-tag {
-            background-color: #1E3A8A; /* Dark Blue/Green (Inspired by plants) */
+            background-color: var(--accent-primary);
             color: var(--text-primary); 
         }
         .award-tag {
-            background-color: var(--accent-primary); /* Gold */
-            color: var(--bg-color); /* Dark text for contrast */
+            background-color: var(--gold-metallic); 
+            color: var(--bg-color);
         }
         .social-icon {
             color: var(--text-secondary);
             transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
         }
         .social-icon:hover {
-            color: var(--accent-primary);
+            color: var(--gold-metallic); /* Gold hover for metallic look */
             transform: scale(1.1);
         }
         .footer-border {
@@ -162,7 +157,7 @@
             left: 12px;
             bottom: 0;
             width: 3px;
-            background-color: var(--accent-secondary); /* Terracotta line */
+            background-color: var(--accent-primary);
             opacity: 0.5; 
             border-radius: 2px;
         }
@@ -171,7 +166,7 @@
             padding-left: 40px;
             margin-bottom: 24px;
         }
-        /* Circle Marker */
+        /* Circle Marker (Metallic Gold) */
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -180,14 +175,15 @@
             width: 15px;
             height: 15px;
             background-color: var(--card-bg); 
-            border: 4px solid var(--accent-primary); /* Gold Border */
+            border: 4px solid var(--gold-metallic); /* Gold Border */
             border-radius: 50%;
             z-index: 10;
             transition: transform 0.3s ease;
+            box-shadow: 0 0 5px var(--gold-metallic); /* Subtle gold glow */
         }
         .timeline-item:hover::before {
             transform: scale(1.2);
-            box-shadow: 0 0 10px var(--accent-primary);
+            box-shadow: 0 0 15px var(--gold-metallic);
         }
     </style>
 </head>
@@ -195,7 +191,7 @@
 
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="text-2xl font-bold gradient-text cursor-pointer transition-transform duration-300 hover:scale-105">MGA.</a>
+            <a href="#home" class="text-2xl font-bold metallic-gold-effect cursor-pointer transition-transform duration-300 hover:scale-105">MGA.</a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#home" class="nav-link transition active">Home</a>
                 <a href="#resume" class="nav-link transition">Resume</a>
@@ -203,13 +199,13 @@
                 <a href="#leadership" class="nav-link transition">Leadership</a>
                 <a href="#connect" class="nav-link transition">Let's Connect</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-zinc-200">
+            <button id="mobile-menu-button" class="md:hidden text-zinc-200 social-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
             </button>
         </nav>
     </header>
 
-    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-zinc-900/90 z-40 backdrop-blur-sm">
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black/90 z-40 backdrop-blur-sm">
         <div class="flex flex-col items-center justify-center h-full space-y-8">
             <a href="#home" class="mobile-menu-link text-2xl nav-link transition">Home</a>
             <a href="#resume" class="mobile-menu-link text-2xl nav-link transition">Resume</a>
@@ -225,10 +221,10 @@
             <div class="min-h-[85vh] flex items-center justify-center py-20">
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-16 items-center">
                     <div class="md:col-span-2 animated-item">
-                        <img src="image_335987.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                        <img src="image_335987.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover border border-accent-primary">
                     </div>
                     <div class="md:col-span-3 animated-item">
-                        <h1 class="text-5xl md:text-6xl font-bold mb-4">
+                        <h1 class="text-5xl md:text-6xl font-bold mb-4 text-white">
                             Hi, I'm <span class="gradient-text">Menaka Gowda Ananda</span>.
                         </h1>
                         <p class="text-secondary text-lg mb-4">
@@ -432,22 +428,22 @@
                      <h3 class="text-3xl font-bold section-title mb-8 animated-item">Leadership Roles</h3>
                      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                         <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
-                            <img src="heinz-leadership.jpg" alt="Photo related to the Heinz Leadership Program" class="rounded-md mb-4 aspect-video object-cover">
+                            <img src="heinz-leadership.jpg" alt="Photo related to the Heinz Leadership Program" class="rounded-md mb-4 aspect-video object-cover border border-card-bg">
                             <h4 class="text-xl font-semibold mb-2 card-title">Heinz Leadership Development Program</h4>
                             <p class="text-secondary flex-grow">Selected participant in a competitive program focused on developing strategic leadership, communication, and policy analysis skills.</p>
                         </div>
                         <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
-                            <img src="class-rep.jpg" alt="Photo related to being a Class Representative" class="rounded-md mb-4 aspect-video object-cover">
+                            <img src="class-rep.jpg" alt="Photo related to being a Class Representative" class="rounded-md mb-4 aspect-video object-cover border border-card-bg">
                             <h4 class="text-xl font-semibold mb-2 card-title">Class Representative (4 Years)</h4>
                             <p class="text-secondary flex-grow">Acted as the primary liaison between a cohort of 200+ students and university faculty, advocating for student needs and resolving academic issues.</p>
                         </div>
                         <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
-                            <img src="rotaract-club.jpg" alt="Photo from the Rotaract Club" class="rounded-md mb-4 aspect-video object-cover">
+                            <img src="rotaract-club.jpg" alt="Photo from the Rotaract Club" class="rounded-md mb-4 aspect-video object-cover border border-card-bg">
                             <h4 class="text-xl font-semibold mb-2 card-title">Rotaract Club Editorial Director (2 Years)</h4>
                             <p class="text-secondary flex-grow">Led content strategy and communication initiatives for the university's Rotaract Club, driving member engagement and promoting community service events.</p>
                         </div>
                         <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
-                            <img src="placement-coordinator.jpg" alt="Photo related to being a Student Placement Coordinator" class="rounded-md mb-4 aspect-video object-cover">
+                            <img src="placement-coordinator.jpg" alt="Photo related to being a Student Placement Coordinator" class="rounded-md mb-4 aspect-video object-cover border border-card-bg">
                             <h4 class="text-xl font-semibold mb-2 card-title">Student Placement Co-ordinator (2 Years)</h4>
                             <p class="text-secondary flex-grow">Elected to facilitate the campus recruitment process, connecting students with career opportunities and coordinating with corporate recruiters.</p>
                         </div>
@@ -525,7 +521,6 @@
                     card.style.setProperty('--mouse-y', `${y}px`);
 
                     const { width, height } = rect;
-                    // Reduced tilt for a more subtle effect
                     const rotateX = (y / height - 0.5) * -5; 
                     const rotateY = (x / width - 0.5) * 5;  
                     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`; 
@@ -568,7 +563,6 @@
             // --- Intersection Observer for Active Navigation Link (Handles scrollspy) ---
             const sectionIdToLinkMap = new Map();
             sections.forEach(section => {
-                // Map the section ID to the header navigation link
                 sectionIdToLinkMap.set(section.id, document.querySelector(`#header a[href="#${section.id}"]`));
             });
 
@@ -582,7 +576,6 @@
                         
                         // Add 'active' to the relevant links
                         const mainNavLink = sectionIdToLinkMap.get(sectionId);
-                        // Find the corresponding mobile link using the href attribute
                         const mobileNavLink = document.querySelector(`#mobile-menu a[href="#${sectionId}"]`);
                         
                         if (mainNavLink) { mainNavLink.classList.add('active'); }
@@ -590,7 +583,6 @@
                     }
                 });
             }, {
-                // Root margin ensures the link activates when the section is near the top of the viewport
                 rootMargin: "-40% 0px -40% 0px", 
                 threshold: [0, 0.25, 0.5, 0.75, 1.0]
             });
@@ -607,7 +599,6 @@
              // Close mobile menu on anchor click
             mobileMenuLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    // Slight delay to allow smooth scrolling before menu hides
                     setTimeout(() => {
                         closeMobileMenu();
                     }, 100); 
