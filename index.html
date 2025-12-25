@@ -10,25 +10,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* --- SLEEK OBSIDIAN & CYBER GOLD PALETTE --- */
-            --bg-color: #0A0E13; /* Obsidian Dark */
-            --text-primary: #F8F8F2; /* Light White */
-            --text-secondary: #97A6B6; /* Muted Grey */
-            --accent-primary: #8BE9FD; /* Cyber Blue/Cyan */
-            --gold-metallic: #FFD700; /* Pure Metallic Gold */
-            --card-bg: #171C25; /* Deep Slate (Card Base) */
+            /* --- HOLOGRAPHIC NEON & ULTRA METALLIC GOLD PALETTE --- */
+            --bg-color: #070A0F; /* Galaxy Black */
+            --text-primary: #F0F8FF; /* Ghost White */
+            --text-secondary: #B0B9C9; /* Muted Steel */
+            --accent-primary: #63D5D8; /* Neon Cyan (Enhanced 426E6F) */
+            --gold-metallic: #FFEB87; /* Ultra Bright Gold */
+            --card-bg: #131921; /* Deep Void (Card Base) */
         }
 
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 5px var(--gold-metallic); }
-            50% { box-shadow: 0 0 15px var(--gold-metallic), 0 0 5px var(--gold-metallic); }
+        @keyframes gold-pulse {
+            0%, 100% { box-shadow: 0 0 5px var(--gold-metallic), 0 0 10px rgba(255, 235, 135, 0.4); }
+            50% { box-shadow: 0 0 10px var(--gold-metallic), 0 0 20px rgba(255, 235, 135, 0.6); }
+        }
+        
+        @keyframes neon-flicker {
+            0%, 100% { text-shadow: 0 0 5px var(--accent-primary), 0 0 10px rgba(99, 213, 216, 0.5); }
+            5% { text-shadow: none; }
+            10% { text-shadow: 0 0 3px var(--accent-primary); }
+            15% { text-shadow: none; }
+            20% { text-shadow: 0 0 5px var(--accent-primary), 0 0 15px rgba(99, 213, 216, 0.8); }
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color); 
+            /* Subtle dark texture for a "galaxy" or "noise" effect */
+            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+            background-size: 50px 50px;
             color: var(--text-secondary);
-            transition: background-color 0.3s ease;
         }
         
         /* Single-Page Scroll Setup */
@@ -38,31 +48,32 @@
         }
         
         /* General Design */
-        .cyber-glow-text {
-            /* Name and main titles use the cyber blue with a subtle shadow */
+        .neon-glow-text {
+            /* Applied to the name and section titles - Strong Holographic/Neon Glow */
             color: var(--accent-primary);
-            text-shadow: 0 0 8px rgba(139, 233, 253, 0.4);
-            transition: text-shadow 0.3s ease;
+            animation: neon-flicker 10s infinite alternate; 
+            transition: all 0.3s ease;
         }
 
         /* Class for the shiny metallic gold effect on small elements */
-        .metallic-gold-glow {
+        .ultra-metallic-gold {
             color: var(--gold-metallic);
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* Stronger gold glow */
-            transition: all 0.3s ease-in-out;
+            text-shadow: 0 0 4px rgba(255, 235, 135, 0.6); 
+            transition: all 0.2s ease-in-out;
         }
 
         .glass-card {
-            /* Card background from deep slate color */
+            /* Card background from deep void color */
             background: var(--card-bg);
-            border: 1px solid rgba(139, 233, 253, 0.15); /* Subtle border from accent color */
+            border: 1px solid rgba(99, 213, 216, 0.2); /* Holographic border from accent color */
             transition: all 0.3s ease-out;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
         .glass-card:hover {
-            box-shadow: 0 5px 25px rgba(139, 233, 253, 0.1); /* Subtle hover shadow */
-            border-color: rgba(139, 233, 253, 0.3);
+            box-shadow: 0 8px 30px rgba(99, 213, 216, 0.2); 
+            border-color: var(--accent-primary);
         }
         
         /* Navigation Styles */
@@ -88,6 +99,7 @@
         .btn-primary:hover {
             background-color: var(--accent-primary); 
             color: var(--bg-color);
+            box-shadow: 0 0 10px var(--accent-primary);
         }
         .btn-secondary {
             background-color: var(--accent-primary); 
@@ -96,6 +108,7 @@
         .btn-secondary:hover {
              background-color: var(--gold-metallic); 
              color: var(--bg-color);
+             box-shadow: 0 0 10px var(--gold-metallic);
         }
         
         /* Text & Element Styles */
@@ -112,7 +125,6 @@
             background-color: var(--card-bg);
             color: var(--text-primary);
             border: 1px solid var(--accent-primary);
-            transition: background-color 0.2s;
         }
         .skill-tag:hover {
             background-color: var(--accent-primary);
@@ -125,7 +137,7 @@
         .award-tag {
             background-color: var(--gold-metallic); 
             color: var(--bg-color);
-            animation: pulse-glow 3s infinite; /* Make award tag shine */
+            animation: gold-pulse 3s infinite alternate;
         }
         
         /* Social Icons (Small Gold Stuff) */
@@ -136,7 +148,7 @@
         .social-icon:hover {
             color: var(--gold-metallic);
             transform: scale(1.1);
-            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
+            filter: drop-shadow(0 0 8px rgba(255, 235, 135, 1));
         }
         .footer-border {
             border-color: var(--card-bg); 
@@ -188,11 +200,11 @@
             border-radius: 50%;
             z-index: 10;
             transition: transform 0.3s ease;
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.5); 
+            box-shadow: 0 0 10px var(--gold-metallic); 
         }
         .timeline-item:hover::before {
             transform: scale(1.2);
-            box-shadow: 0 0 15px var(--gold-metallic);
+            box-shadow: 0 0 20px var(--gold-metallic);
         }
     </style>
 </head>
@@ -200,7 +212,7 @@
 
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="text-2xl font-bold metallic-gold-glow cursor-pointer transition-transform duration-300 hover:scale-105">MGA.</a>
+            <a href="#home" class="text-2xl font-bold ultra-metallic-gold cursor-pointer transition-transform duration-300 hover:scale-105">MGA.</a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#home" class="nav-link transition active">Home</a>
                 <a href="#resume" class="nav-link transition">Resume</a>
@@ -230,11 +242,11 @@
             <div class="min-h-[85vh] flex items-center justify-center py-20">
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-16 items-center">
                     <div class="md:col-span-2 animated-item">
-                        <img src="image_335987.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover border border-accent-primary opacity-90">
+                        <img src="photo.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover border-2 border-accent-primary opacity-90 shadow-[0_0_15px_rgba(99,213,216,0.6)]">
                     </div>
                     <div class="md:col-span-3 animated-item">
                         <h1 class="text-5xl md:text-6xl font-bold mb-4 text-white">
-                            Hi, I'm <span class="cyber-glow-text">Menaka Gowda Ananda</span>.
+                            Hi, I'm <span class="neon-glow-text">Menaka Gowda Ananda</span>.
                         </h1>
                         <p class="text-secondary text-lg mb-4">
                             I am a driven and innovative technologist currently pursuing a Master of Information Systems Management at Carnegie Mellon University. With a strong foundation in Computer Science and extensive hands-on experience at Amazon Web Services, I specialize in architecting scalable cloud solutions, developing data-driven applications, and leading impactful projects from concept to completion.
@@ -256,7 +268,7 @@
         <section id="resume" class="py-16">
             <div class="max-w-4xl mx-auto">
                  <div class="text-center mb-12 animated-item">
-                    <h2 class="text-4xl font-bold cyber-glow-text">My Resume</h2>
+                    <h2 class="text-4xl font-bold neon-glow-text">My Resume</h2>
                      <a href="Menaka_Gowda_Ananda_Resume.pdf" target="_blank" class="mt-4 inline-block btn-primary font-semibold py-2 px-6 rounded-lg transition">Download PDF</a>
                 </div>
                 
@@ -377,7 +389,7 @@
         
         <section id="projects-research" class="py-16">
              <div class="text-center mb-12 animated-item">
-                <h2 class="text-4xl font-bold cyber-glow-text">Projects & Research</h2>
+                <h2 class="text-4xl font-bold neon-glow-text">Projects & Research</h2>
             </div>
             <div class="max-w-5xl mx-auto">
                 <div class="stagger-container">
@@ -430,7 +442,7 @@
 
         <section id="leadership" class="py-16">
             <div class="text-center mb-12 animated-item">
-                <h2 class="text-4xl font-bold cyber-glow-text">Leadership & Awards</h2>
+                <h2 class="text-4xl font-bold neon-glow-text">Leadership & Awards</h2>
             </div>
             <div class="max-w-5xl mx-auto">
                 <div class="stagger-container">
@@ -463,8 +475,8 @@
                     <h3 class="text-3xl font-bold section-title mb-6">Awards</h3>
                     <div class="glass-card rounded-lg p-6">
                        <ul class="list-disc list-inside text-secondary space-y-2">
-                            <li class="flex items-center"><span class="metallic-gold-glow mr-2">⭐</span> Recipient of the AWS Customer Obsession Award</li>
-                            <li class="flex items-center"><span class="metallic-gold-glow mr-2">⭐</span> Best Paper Award at IEEE ICAIT 2024</li>
+                            <li class="flex items-center"><span class="ultra-metallic-gold mr-2">⭐</span> Recipient of the AWS Customer Obsession Award</li>
+                            <li class="flex items-center"><span class="ultra-metallic-gold mr-2">⭐</span> Best Paper Award at IEEE ICAIT 2024</li>
                        </ul>
                     </div>
                 </div>
@@ -474,7 +486,7 @@
         <section id="connect" class="py-16">
              <div class="min-h-[85vh] flex items-center justify-center text-center">
                 <div class="animated-item">
-                    <h2 class="text-4xl font-bold mb-4 cyber-glow-text">Let's Connect</h2>
+                    <h2 class="text-4xl font-bold mb-4 neon-glow-text">Let's Connect</h2>
                     <p class="text-xl text-secondary max-w-2xl mx-auto mb-8">
                         I'm currently open to new opportunities and collaborations. Feel free to reach out if you have a project in mind or just want to connect!
                     </p>
