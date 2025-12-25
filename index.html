@@ -28,6 +28,7 @@
         html {
             scroll-behavior: smooth;
         }
+        /* CRITICAL: Hides all content initially. Must be overridden by JS. */
         .page-content {
             display: none;
         }
@@ -469,11 +470,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const pageContents = document.querySelectorAll('.page-content');
-            const navLinks = document.querySelectorAll('#header a.nav-link');
-            const mobileMenuLinks = document.querySelectorAll('#mobile-menu a.mobile-menu-link');
+            // Simplified link selection for reliability
+            const allNavLinks = document.querySelectorAll('a[onclick^="showPage"]'); 
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const allNavLinks = [...navLinks, ...mobileMenuLinks];
 
             // --- Spotlight & 3D Tilt Effect ---
             document.querySelectorAll('.glass-card').forEach(card => {
@@ -520,7 +520,9 @@
             });
             
             window.showPage = (pageId) => {
-                // Hide all pages and remove animations
+                console.log(`Switching to page: ${pageId}`); // Debug: confirm function runs
+
+                // Hide all pages and clear animations
                 pageContents.forEach(page => {
                     page.classList.remove('active-page');
                     page.querySelectorAll('.animated-item').forEach(el => {
@@ -535,6 +537,8 @@
                     
                     // Re-observe animations for the new active page
                     activePage.querySelectorAll('.animated-item, .stagger-container').forEach(el => observer.observe(el));
+                } else {
+                    console.error(`Page element not found for ID: ${pageId}-page`); // Debug: check if page ID is correct
                 }
 
                 // Update active nav link style
