@@ -10,13 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* --- NEW DEEP CYAN & GOLD PALETTE (Based on user colors) --- */
-            --bg-color: #001F2B; /* Very Dark Blue/Black */
+            /* --- DEEP CHARCOAL & GOLD PALETTE (Inspired by Photo, using Gold, No Orange) --- */
+            --bg-color: #0F1113; /* Very Dark Black/Charcoal */
             --text-primary: #FFFFFF; /* Pure White */
-            --text-secondary: #B0BEC5; /* Light Slate Grey (For readability) */
+            --text-secondary: #C3C7C7; /* Muted Light Grey */
             --accent-primary: #FFC72C; /* Rich Gold (Primary Highlight) */
-            --accent-secondary: #00415A; /* Deep Cyan/Slate (Secondary Highlight/Buttons) */
-            --card-bg: #663300; /* Dark Brown/Maroon (Card Base) */
+            --accent-secondary: #9C6644; /* Muted Terracotta Brown (Secondary Highlight/Buttons) */
+            --card-bg: #1F2225; /* Dark Charcoal (Card Base) */
         }
 
         @keyframes gradient-animation {
@@ -27,8 +27,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            /* Gradient using the new dark colors for subtle background movement */
-            background: linear-gradient(-45deg, var(--bg-color), #0a2f42, var(--card-bg), #000000); 
+            /* Subtly moving background with dark shades */
+            background: linear-gradient(-45deg, var(--bg-color), #14171a, var(--card-bg), #000000); 
             background-size: 400% 400%;
             animation: gradient-animation 20s ease infinite;
             color: var(--text-secondary);
@@ -37,30 +37,29 @@
         /* Single-Page Scroll Setup */
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 6rem; 
+            scroll-padding-top: 6rem; /* Ensures fixed header doesn't cover content */
         }
         
         /* General Design */
         .gradient-text {
-            /* Gradient from Gold to Cyan */
+            /* Gradient from Gold to Terracotta/Brown */
             background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .glass-card {
-            /* Background uses transparent version of the new --card-bg */
-            background: rgba(102, 51, 0, 0.6); 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(31, 34, 37, 0.7); /* Transparent Card BG */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.2s ease-out;
+            transition: all 0.3s ease-out;
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
         }
         .glass-card:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .glass-card::before {
             content: '';
@@ -95,11 +94,11 @@
             color: var(--bg-color); /* Dark text on light accent */
         }
         .btn-primary:hover {
-            background-color: var(--accent-secondary); /* Cyan/Slate */
+            background-color: var(--accent-secondary); /* Terracotta */
             color: var(--text-primary);
         }
         .btn-secondary {
-            background-color: var(--accent-secondary); /* Cyan/Slate */
+            background-color: var(--accent-secondary); /* Terracotta */
             color: var(--text-primary); 
         }
         .btn-secondary:hover {
@@ -113,14 +112,14 @@
             color: var(--accent-primary);
         }
         .text-muted {
-            color: #71717a; /* Zinc 500 (Kept as dark grey for date contrast) */
+            color: #94A3B8; /* Slate 400 for date contrast */
         }
         .skill-tag {
             background-color: var(--card-bg);
             color: var(--text-primary);
         }
         .cert-tag {
-            background-color: var(--accent-secondary); /* Cyan/Slate */
+            background-color: #1E3A8A; /* Dark Blue/Green (Inspired by plants) */
             color: var(--text-primary); 
         }
         .award-tag {
@@ -148,7 +147,7 @@
         }
         .animated-item.visible {
             opacity: 1;
-            transform: translateY(0) translateX(0) scale(1);
+            transform: translateY(0);
         }
 
         /* --- Resume Timeline Design --- */
@@ -163,7 +162,7 @@
             left: 12px;
             bottom: 0;
             width: 3px;
-            background-color: var(--accent-primary);
+            background-color: var(--accent-secondary); /* Terracotta line */
             opacity: 0.5; 
             border-radius: 2px;
         }
@@ -181,7 +180,7 @@
             width: 15px;
             height: 15px;
             background-color: var(--card-bg); 
-            border: 4px solid var(--accent-primary); 
+            border: 4px solid var(--accent-primary); /* Gold Border */
             border-radius: 50%;
             z-index: 10;
             transition: transform 0.3s ease;
@@ -226,7 +225,7 @@
             <div class="min-h-[85vh] flex items-center justify-center py-20">
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-16 items-center">
                     <div class="md:col-span-2 animated-item">
-                        <img id="profile-image" src="photo.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                        <img src="image_335987.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover">
                     </div>
                     <div class="md:col-span-3 animated-item">
                         <h1 class="text-5xl md:text-6xl font-bold mb-4">
@@ -485,7 +484,7 @@
                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                         </a>
                         <a href="https://www.linkedin.com/in/menaka-gowda-ananda" target="_blank" class="social-icon transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucede-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
                         </a>
                     </div>
                 </div>
@@ -507,6 +506,13 @@
             const sections = document.querySelectorAll('main section');
             const allLinks = [...navLinks, ...mobileMenuLinks];
 
+            // Function to close mobile menu
+            const closeMobileMenu = () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            };
+
 
             // --- Spotlight & 3D Tilt Effect ---
             document.querySelectorAll('.glass-card').forEach(card => {
@@ -519,6 +525,7 @@
                     card.style.setProperty('--mouse-y', `${y}px`);
 
                     const { width, height } = rect;
+                    // Reduced tilt for a more subtle effect
                     const rotateX = (y / height - 0.5) * -5; 
                     const rotateY = (x / width - 0.5) * 5;  
                     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`; 
@@ -602,9 +609,14 @@
                 link.addEventListener('click', () => {
                     // Slight delay to allow smooth scrolling before menu hides
                     setTimeout(() => {
-                        mobileMenu.classList.add('hidden');
+                        closeMobileMenu();
                     }, 100); 
                 });
+            });
+
+            // Handle navigation clicks for smooth scroll and menu close
+            navLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
             });
         });
     </script>
