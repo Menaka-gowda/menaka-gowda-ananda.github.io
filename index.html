@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* --- WARM MINIMALIST LIGHT THEME (CREAM & COFFEE) --- */
-            --bg-color: #F5F5DC; /* Cream/Off-White */
-            --text-primary: #3D2C27; /* Deep Coffee Brown */
+            /* --- PREMIUM WARM AESTHETIC THEME (Inspired by Image) --- */
+            --bg-color: #F5F0E6; /* Creamy Beige */
+            --text-primary: #3D2C27; /* Deep Espresso Brown */
             --text-secondary: #6B5C57; /* Muted Cocoa */
-            --accent-primary: #A0522D; /* Sienna/Terracotta - Warm, Rich Accent */
-            --accent-secondary: #D2B48C; /* Tan/Beige - Muted, Elegant Highlight */
-            --card-bg: #FFF8E7; /* Slightly Lighter Cream/Parchment */
-            --shadow-color: rgba(61, 44, 39, 0.2); /* Soft brown shadow */
+            --accent-primary: #A0522D; /* Rich Terracotta (Primary Accent) */
+            --accent-secondary: #D2B48C; /* Tan/Beige (Secondary Highlight) */
+            --card-bg: #FFF8E7; /* Light Parchment */
+            --shadow-color: rgba(61, 44, 39, 0.15); /* Soft brown shadow */
         }
 
         body {
@@ -28,86 +28,70 @@
         html {
             scroll-behavior: smooth;
         }
-        /* CRITICAL: Hides all content initially. Must be overridden by JS. */
         .page-content {
             display: none;
         }
         .active-page {
             display: block;
         }
-        .elegant-accent-text {
-            /* Now a solid, rich accent color for titles */
+        .aesthetic-accent-text {
             color: var(--accent-primary); 
             font-weight: 700;
         }
-        .glass-card {
+        
+        /* Card Styles */
+        .aesthetic-card {
             background-color: var(--card-bg); 
-            border: 1px solid rgba(160, 82, 45, 0.2); /* Subtle accent border */
+            border: 1px solid rgba(61, 44, 39, 0.05); /* Very subtle edge */
             transition: all 0.2s ease-out;
             position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            box-shadow: 0 4px 10px var(--shadow-color); /* Soft shadow */
+            box-shadow: 0 6px 15px var(--shadow-color); /* Soft, pronounced shadow for aesthetic lift */
         }
-        .glass-card:hover {
-            box-shadow: 0 8px 20px var(--shadow-color), 0 0 10px rgba(160, 82, 45, 0.2); /* Deeper shadow and subtle accent ring */
+        .aesthetic-card:hover {
+            box-shadow: 0 8px 25px var(--shadow-color); /* Deeper lift on hover */
+            transform: translateY(-2px);
         }
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: var(--mouse-y, 0px);
-            left: var(--mouse-x, 0px);
-            width: 150px;
-            height: 150px;
-            /* Spotlight changed to a very subtle beige highlight */
-            background: radial-gradient(circle, rgba(210, 180, 140, 0.2) 0%, rgba(210, 180, 140, 0) 70%); 
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        .glass-card:hover::before {
-            opacity: 1;
-        }
+
         /* Navigation and Links */
         .nav-link {
             color: var(--text-secondary);
             cursor: pointer;
             transition: color 0.2s ease-in-out;
+            padding: 4px 8px; /* Padding for the accent border */
         }
         .nav-link:hover {
             color: var(--accent-primary);
         }
         .nav-link.active {
-            color: var(--accent-primary); /* Active link is the primary accent */
+            color: var(--accent-primary); 
             font-weight: 600;
+            /* Underline effect matching the image */
             border-bottom: 2px solid var(--accent-primary);
         }
+
         /* Buttons */
-        .btn-primary, .btn-secondary {
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        .btn-primary:hover, .btn-secondary:hover {
-            transform: scale(1.03);
-            box-shadow: 0 4px 15px var(--shadow-color);
-        }
         .btn-primary {
             background-color: var(--accent-primary); 
             color: var(--bg-color);
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
         .btn-primary:hover {
-            background-color: var(--accent-secondary); 
-            color: var(--text-primary);
+            background-color: var(--text-primary); /* Hover to deep brown */
+            transform: scale(1.03);
+            box-shadow: 0 4px 10px var(--shadow-color);
         }
         .btn-secondary {
-            background-color: var(--accent-secondary); 
+            background-color: transparent; 
             color: var(--text-primary);
-            border: 1px solid var(--accent-primary);
+            border: 2px solid var(--accent-secondary); /* Beige outline */
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
         .btn-secondary:hover {
-             background-color: var(--accent-primary); 
-             color: var(--bg-color);
+             background-color: var(--accent-secondary); 
+             color: var(--text-primary);
+             transform: scale(1.03);
         }
         /* Text Elements */
         .section-title {
@@ -116,25 +100,18 @@
         .card-title {
             color: var(--accent-primary); 
         }
-        .text-muted {
-            color: var(--text-secondary); 
-        }
-        /* Tags */
+        /* Tags & Awards */
         .skill-tag {
-            background-color: var(--card-bg);
+            background-color: var(--accent-secondary); /* Beige background */
             color: var(--text-primary);
-            border: 1px solid var(--accent-secondary); 
-        }
-        .skill-tag:hover {
-            background-color: var(--accent-secondary); 
-            color: var(--text-primary);
+            font-weight: 500;
         }
         .cert-tag {
             background-color: var(--accent-primary); 
-            color: var(--bg-color);
+            color: var(--card-bg);
         }
         .award-tag {
-            background-color: #FFD700; 
+            background-color: #FFD700; /* Gold */
             color: var(--text-primary);
         }
         /* Social Icons */
@@ -146,10 +123,6 @@
             color: var(--accent-primary); 
             transform: scale(1.1);
         }
-        .footer-border {
-            border-color: var(--accent-secondary); 
-        }
-
         /* Animation Classes */
         .animated-item {
             opacity: 0;
@@ -164,15 +137,15 @@
 </head>
 <body class="antialiased">
 
-    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card">
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-card border-b border-accent-secondary aesthetic-card shadow-none">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a onclick="showPage('home')" class="text-2xl font-bold elegant-accent-text cursor-pointer transition-transform duration-300 hover:scale-105">MGA.</a>
+            <a onclick="showPage('home')" class="text-2xl font-bold aesthetic-accent-text cursor-pointer transition-transform duration-300 hover:scale-105">MGA.</a>
             <div class="hidden md:flex items-center space-x-8">
                 <a onclick="showPage('home')" class="nav-link transition active">Home</a>
                 <a onclick="showPage('resume')" class="nav-link transition">Resume</a>
                 <a onclick="showPage('projects-research')" class="nav-link transition">Projects & Research</a>
                 <a onclick="showPage('leadership')" class="nav-link transition">Leadership</a>
-                <a onclick="showPage('connect')" class="nav-link transition">Let's Connect</a>
+                <a onclick="showPage('connect')" class="nav-link transition">Connect</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-zinc-800">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
@@ -180,13 +153,13 @@
         </nav>
     </header>
 
-    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white/90 z-40 backdrop-blur-sm">
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-40" style="background-color: var(--bg-color);">
         <div class="flex flex-col items-center justify-center h-full space-y-8">
             <a onclick="showPage('home')" class="mobile-menu-link text-2xl nav-link transition">Home</a>
             <a onclick="showPage('resume')" class="mobile-menu-link text-2xl nav-link transition">Resume</a>
             <a onclick="showPage('projects-research')" class="mobile-menu-link text-2xl nav-link transition">Projects & Research</a>
             <a onclick="showPage('leadership')" class="mobile-menu-link text-2xl nav-link transition">Leadership</a>
-            <a onclick="showPage('connect')" class="mobile-menu-link text-2xl nav-link transition">Let's Connect</a>
+            <a onclick="showPage('connect')" class="mobile-menu-link text-2xl nav-link transition">Connect</a>
         </div>
     </div>
 
@@ -194,26 +167,55 @@
 
         <section id="home-page" class="page-content">
             <div class="min-h-[85vh] flex items-center justify-center py-20">
-                <div class="grid grid-cols-1 md:grid-cols-5 gap-16 items-center animated-item">
-                    <div class="md:col-span-2">
-                        <img src="photo.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-lg shadow-xl w-full h-auto object-cover border-2 border-accent-secondary opacity-90 shadow-[0_4px_10px_var(--shadow-color)]">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-16 items-center">
+                    <div class="md:col-span-2 space-y-10">
+                        <div class="aesthetic-card rounded-lg p-6 animated-item">
+                            <img src="photo.jpg" alt="A portrait of Menaka Gowda Ananda" class="rounded-md w-full h-auto object-cover border-4" style="border-color: var(--accent-secondary);">
+                        </div>
+                        
+                        <div class="aesthetic-card rounded-lg p-6 animated-item">
+                            <h3 class="text-2xl font-bold section-title mb-4">Let's Connect</h3>
+                            <p class="text-secondary text-base mb-6">
+                                I'm actively seeking opportunities in cloud architecture and data systems. Feel free to reach out to discuss collaborations or career advice.
+                            </p>
+                            <a href="mailto:menakagowda2002@gmail.com" class="btn-primary py-2 px-6 rounded-lg inline-block text-sm">
+                                Say Hello
+                            </a>
+                            <div class="flex space-x-4 mt-6">
+                                <a href="https://github.com/Menaka-gowda" target="_blank" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></a>
+                                <a href="https://www.instagram.com/menaka_gowda27/" target="_blank" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+                                <a href="https://www.linkedin.com/in/menaka-gowda-ananda" target="_blank" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="md:col-span-3">
-                        <h1 class="text-5xl md:text-6xl font-bold mb-4 section-title">
-                            Hi, I'm <span class="elegant-accent-text">Menaka Gowda Ananda</span>.
-                        </h1>
-                        <p class="text-secondary text-lg mb-4">
-                            I am a driven and innovative technologist currently pursuing a Master of Information Systems Management at Carnegie Mellon University. With a strong foundation in Computer Science and extensive hands-on experience at Amazon Web Services, I specialize in architecting scalable cloud solutions, developing data-driven applications, and leading impactful projects from concept to completion.
-                        </p>
-                        <p class="text-secondary text-lg">
-                            My passion lies at the intersection of technology and business strategy. As a member of the Heinz Leadership Development Program, I thrive in collaborative environments and am committed to continuous learning and driving innovation.
-                        </p>
-                        <p class="text-secondary text-lg mt-4">
-                            I enjoy leading and collaborating — from organizing college events and student clubs to mentoring and sharing knowledge. Outside tech, I’m a classical Bharatanatyam dancer, love exploring new cuisines, binge-watching shows, and taking long drives to discover new places.
-                        </p>
-                        <p class="text-secondary text-lg mt-4">
-                            This website is a place for me to share my projects, experience, and ideas. Feel free to explore and connect with me — let’s create something awesome together.
-                        </p>
+
+                    <div class="md:col-span-3 space-y-10">
+                        <div class="animated-item">
+                            <h1 class="text-4xl md:text-5xl font-bold mb-4 section-title">
+                                Hi, I'm <span class="aesthetic-accent-text">Menaka Gowda Ananda</span>.
+                            </h1>
+                            <p class="text-secondary text-lg mb-6">
+                                I am a driven and innovative technologist currently pursuing a Master of Information Systems Management at Carnegie Mellon University. With a strong foundation in Computer Science and extensive hands-on experience at Amazon Web Services, I specialize in architecting scalable cloud solutions, developing data-driven applications, and leading impactful projects from concept to completion.
+                            </p>
+                            <p class="text-secondary text-lg">
+                                My passion lies at the intersection of technology and business strategy. As a member of the Heinz Leadership Development Program, I thrive in collaborative environments and am committed to continuous learning and driving innovation.
+                            </p>
+                        </div>
+                        
+                        <div class="aesthetic-card rounded-lg p-6 animated-item">
+                            <h4 class="text-xl font-semibold card-title mb-2">Featured Project</h4>
+                            <p class="text-secondary mb-4">DynamoDB Data Transfer Automation Script (AWS)</p>
+                            <span class="cert-tag py-1 px-3 rounded-md text-sm font-medium">AWS / Python / Automation</span>
+                            <button onclick="showPage('projects-research')" class="btn-secondary py-1 px-4 rounded-lg text-sm ml-4">View Detail</button>
+                        </div>
+                        
+                        <div class="aesthetic-card rounded-lg p-6 animated-item">
+                            <h4 class="text-xl font-semibold card-title mb-3">Recent Recognition</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="award-tag py-1 px-3 rounded-md text-sm font-medium">🏆 Best Paper Award (IEEE ICAIT 2024)</span>
+                                <span class="award-tag py-1 px-3 rounded-md text-sm font-medium">AWS Customer Obsession Award</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -229,38 +231,26 @@
                 <div class="mb-12 stagger-container">
                     <h3 class="text-3xl font-bold section-title mb-6 animated-item">Professional Experience</h3>
                     <div class="space-y-8">
-                        <div class="glass-card rounded-lg p-6 animated-item">
+                        <div class="aesthetic-card rounded-lg p-6 animated-item">
                             <div class="flex justify-between items-baseline">
                                 <h4 class="text-xl font-semibold card-title">Cloud Support Associate</h4>
-                                <p class="text-muted text-sm">July 2024 - July 2025</p>
+                                <p class="text-secondary text-sm">July 2024 - July 2025</p>
                             </div>
                             <p class="font-medium mb-2 section-title">Amazon Web Services India Private Limited</p>
                             <ul class="list-disc list-inside text-secondary space-y-1">
                                 <li>Delivered technical consulting and architectural support to 100+ enterprise customers, specializing in Big Data and AI services.</li>
                                 <li>Troubleshoot complex issues and optimize database performance to improve reliability and scalability.</li>
-                                <li>Collaborate with cross-functional teams to resolve technical challenges and deliver efficient cloud solutions.</li>
                             </ul>
                         </div>
-                        <div class="glass-card rounded-lg p-6 animated-item">
+                        <div class="aesthetic-card rounded-lg p-6 animated-item">
                             <div class="flex justify-between items-baseline">
                                 <h4 class="text-xl font-semibold card-title">Cloud Support Associate Intern</h4>
-                                <p class="text-muted text-sm">March 2024 - June 2024</p>
+                                <p class="text-secondary text-sm">March 2024 - June 2024</p>
                             </div>
                             <p class="font-medium mb-2 section-title">Amazon Web Services India Private Limited</p>
                             <ul class="list-disc list-inside text-secondary space-y-1">
                                 <li>Designed and implemented an automation script for cross-account DynamoDB table data migration, reducing migration time from hours to minutes.</li>
                                 <li>Acknowledged internally and is considered to be adopted as an AWS feature.</li>
-                            </ul>
-                        </div>
-                         <div class="glass-card rounded-lg p-6 animated-item">
-                            <div class="flex justify-between items-baseline">
-                                <h4 class="text-xl font-semibold card-title">Technical Consultant Intern</h4>
-                                <p class="text-muted text-sm">April 2023 - June 2023</p>
-                            </div>
-                            <p class="font-medium mb-2 section-title">Adobe Systems India Private Limited</p>
-                            <ul class="list-disc list-inside text-secondary space-y-1">
-                                <li>Developed and maintained Adobe Experience Manager (AEM) components, templates, and workflows.</li>
-                                <li>Configured AEM to enable web and mobile applications, ensuring seamless content management.</li>
                             </ul>
                         </div>
                     </div>
@@ -269,17 +259,17 @@
                 <div class="mb-12 stagger-container">
                     <h3 class="text-3xl font-bold section-title mb-6 animated-item">Education</h3>
                     <div class="space-y-8">
-                        <div class="glass-card rounded-lg p-6 animated-item">
+                        <div class="aesthetic-card rounded-lg p-6 animated-item">
                             <div class="flex justify-between items-baseline">
                                 <h4 class="text-xl font-semibold card-title">Master of Information Systems Management</h4>
-                                <p class="text-muted text-sm">Exp. Dec 2026</p>
+                                <p class="text-secondary text-sm">Exp. Dec 2026</p>
                             </div>
                             <p class="font-medium section-title">Carnegie Mellon University, PA</p>
                         </div>
-                        <div class="glass-card rounded-lg p-6 animated-item">
+                        <div class="aesthetic-card rounded-lg p-6 animated-item">
                             <div class="flex justify-between items-baseline">
                                 <h4 class="text-xl font-semibold card-title">Bachelor of Computer Science Engineering</h4>
-                                <p class="text-muted text-sm">July 2024</p>
+                                <p class="text-secondary text-sm">July 2024</p>
                             </div>
                             <p class="font-medium section-title">Visvesvaraya Technological University, India</p>
                         </div>
@@ -288,44 +278,24 @@
                 
                 <div class="mb-12 animated-item">
                     <h3 class="text-3xl font-bold section-title mb-6">Skills & Certifications</h3>
-                    <div class="glass-card rounded-lg p-6">
+                    <div class="aesthetic-card rounded-lg p-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                            <div>
-                                <h4 class="font-semibold text-lg section-title mb-3">Programming & Development</h4>
+                                <h4 class="font-semibold text-lg section-title mb-3">Development & Data</h4>
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Python</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Java</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">C++</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">HTML/CSS/JS</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Django</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm">Python</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm">Java</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm">Django</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm">SQL/DynamoDB</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm">Apache Spark</span>
                                 </div>
                            </div>
                            <div>
-                                <h4 class="font-semibold text-lg section-title mb-3">Cloud & DevOps</h4>
+                                <h4 class="font-semibold text-lg section-title mb-3">Cloud & Architecture</h4>
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Amazon Web Services (AWS)</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Terraform</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Git</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Apache Maven</span>
-                                </div>
-                           </div>
-                            <div>
-                                <h4 class="font-semibold text-lg section-title mb-3">Data & Databases</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">MySQL</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Cassandra</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">DynamoDB</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Apache Spark</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Hadoop</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Power BI</span>
-                                </div>
-                           </div>
-                            <div>
-                                <h4 class="font-semibold text-lg section-title mb-3">Machine Learning & AI</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">Scikit-learn</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">TensorFlow</span>
-                                    <span class="skill-tag py-1 px-3 rounded-md text-sm font-medium">OpenCV</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm">Amazon Web Services (AWS)</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm">Terraform</span>
+                                    <span class="skill-tag py-1 px-3 rounded-md text-sm">Git/CI-CD</span>
                                 </div>
                            </div>
                            <div class="md:col-span-2">
@@ -347,23 +317,27 @@
             </div>
             <div class="max-w-5xl mx-auto">
                 <div class="stagger-container">
-                    <h3 class="text-3xl font-bold section-title mb-8 animated-item">Professional & Academic Projects</h3>
+                    <h3 class="text-3xl font-bold section-title mb-8 animated-item">Key Projects</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                        <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
+                        <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
                             <h4 class="text-xl font-semibold mb-2 card-title">DynamoDB Data Transfer Automation</h4>
-                            <p class="text-secondary mb-4 flex-grow">Developed a CloudFormation and Python (Boto3) script to automate DynamoDB migration across AWS accounts, reducing manual effort by 90% and recognized for potential adoption as an AWS feature.</p>
+                            <p class="text-secondary mb-4 flex-grow">A Python (Boto3) and CloudFormation script to automate DynamoDB migration across AWS accounts, recognized for 90% efficiency improvement.</p>
+                            <span class="cert-tag py-1 px-3 rounded-md text-xs self-start">AWS Automation</span>
                         </div>
-                        <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
+                        <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
                             <h4 class="text-xl font-semibold mb-2 card-title">AI-Based Career Counselling Chatbot</h4>
-                            <p class="text-secondary mb-4 flex-grow">Built an NLP chatbot using Python and Django for personalized career guidance, leveraging text classification and knowledge graphs to improve student decision-making.</p>
+                            <p class="text-secondary mb-4 flex-grow">NLP chatbot using Django for personalized career guidance, leveraging text classification and knowledge graphs.</p>
+                            <span class="cert-tag py-1 px-3 rounded-md text-xs self-start">NLP & Django</span>
                         </div>
-                         <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
-                            <h4 class="text-xl font-semibold mb-2 card-title">AI Virtual Mouse</h4>
-                            <p class="text-secondary mb-4 flex-grow">Led a team to design a gesture-based virtual mouse using OpenCV and MediaPipe, achieving 85% accuracy in real-time hand tracking and enhancing accessibility for users with motor disabilities.</p>
+                         <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
+                            <h4 class="text-xl font-semibold mb-2 card-title">AI Virtual Mouse Interface</h4>
+                            <p class="text-secondary mb-4 flex-grow">Gesture-based virtual mouse using OpenCV and MediaPipe, enhancing accessibility with 85% real-time tracking accuracy.</p>
+                            <span class="cert-tag py-1 px-3 rounded-md text-xs self-start">Computer Vision / OpenCV</span>
                         </div>
-                        <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
+                        <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
                             <h4 class="text-xl font-semibold mb-2 card-title">Voice-Based Email for Visually-Impaired</h4>
-                            <p class="text-secondary mb-4 flex-grow">Created a speech-controlled email system using Google Cloud APIs and Django, enabling users to manage emails via voice commands with multi-language support.</p>
+                            <p class="text-secondary mb-4 flex-grow">Speech-controlled email system using Google Cloud APIs and Django, offering full email management via voice commands.</p>
+                            <span class="cert-tag py-1 px-3 rounded-md text-xs self-start">Google APIs / Accessibility</span>
                         </div>
                     </div>
                 </div>
@@ -371,23 +345,18 @@
                 <div class="stagger-container">
                     <h3 class="text-3xl font-bold section-title mb-8 animated-item">Research & Publications</h3>
                     <div class="space-y-6 mb-16">
-                        <div class="glass-card rounded-lg p-6 animated-item">
-                            <a href="https://link.springer.com/" target="_blank" class="font-medium text-lg section-title hover:text-accent-primary transition duration-300">"Towards Hands-Free Computing: AI Virtual Mouse Interface Powered by Gestures"</a>
-                            <p class="text-secondary my-2">This paper introduces a novel human-computer interaction system using OpenCV and MediaPipe for gesture-based mouse control, aiming to improve accessibility for users with motor impairments.</p>
-                            <p class="text-muted text-sm mt-1">Published in Springer, Communications in Computer and Information Science (CCIS) series.</p>
+                        <div class="aesthetic-card rounded-lg p-6 animated-item">
+                            <a href="https://link.springer.com/" target="_blank" class="font-medium text-lg card-title hover:text-text-primary transition duration-300">"Towards Hands-Free Computing: AI Virtual Mouse Interface Powered by Gestures"</a>
+                            <p class="text-secondary my-2">Paper on novel human-computer interaction using gesture control (OpenCV/MediaPipe).</p>
+                            <p class="text-secondary text-sm mt-1">Published in Springer, Communications in Computer and Information Science (CCIS) series.</p>
                         </div>
-                        <div class="glass-card rounded-lg p-6 animated-item">
+                        <div class="aesthetic-card rounded-lg p-6 animated-item">
                             <div class="flex justify-between items-start">
-                                <a href="https://ieeexplore.ieee.org/" target="_blank" class="font-medium text-lg section-title hover:text-accent-primary transition duration-300">"Algorithmic Vision in Movies: RBM vs Autoencoder for Movie Recognition Systems"</a>
+                                <a href="https://ieeexplore.ieee.org/" target="_blank" class="font-medium text-lg card-title hover:text-text-primary transition duration-300">"Algorithmic Vision in Movies: RBM vs Autoencoder for Movie Recognition Systems"</a>
                                 <span class="award-tag py-1 px-3 rounded-md text-xs font-bold whitespace-nowrap ml-4">🏆 Best Paper Award</span>
                             </div>
-                            <p class="text-secondary my-2">This award-winning research compares the effectiveness of Restricted Boltzmann Machines (RBM) and Autoencoders in building movie recommendation and recognition systems, analyzing their performance on large datasets.</p>
-                            <p class="text-muted text-sm mt-1">Published in IEEE International Conference on Advances in Information Technology (ICAIT-2024).</p>
-                        </div>
-                        <div class="glass-card rounded-lg p-6 animated-item">
-                             <a href="https://ijariie.com/AdminUploadPdf/AI_based_career_chatbot__Leveraging_AI_for_Career_Counseling_ijariie23829.pdf" target="_blank" class="font-medium text-lg section-title hover:text-accent-primary transition duration-300">"AI Based career chatbot: Leveraging AI for Career Counseling"</a>
-                             <p class="text-secondary my-2">This publication details the architecture and implementation of an NLP-powered chatbot designed to provide students with personalized, data-driven career guidance, improving upon traditional counseling methods.</p>
-                            <p class="text-muted text-sm mt-1">Published in International Journal of Advance Research and Innovative Ideas in Education (IJARIIE).</p>
+                            <p class="text-secondary my-2">Award-winning research comparing RBM and Autoencoders for movie recommendation systems.</p>
+                            <p class="text-secondary text-sm mt-1">Published in IEEE International Conference on Advances in Information Technology (ICAIT-2024).</p>
                         </div>
                     </div>
                 </div>
@@ -402,36 +371,26 @@
                 <div class="stagger-container">
                      <h3 class="text-3xl font-bold section-title mb-8 animated-item">Leadership Roles</h3>
                      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                        <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
-                            <img src="heinz-leadership.jpg" alt="Photo related to the Heinz Leadership Program" class="rounded-md mb-4 aspect-video object-cover">
+                        <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
                             <h4 class="text-xl font-semibold mb-2 card-title">Heinz Leadership Development Program</h4>
-                            <p class="text-secondary flex-grow">Selected participant in a competitive program focused on developing strategic leadership, communication, and policy analysis skills.</p>
+                            <p class="text-secondary flex-grow">Selected participant in a competitive CMU program focusing on strategic leadership and policy analysis.</p>
+                            <span class="skill-tag py-1 px-3 rounded-md text-xs self-start mt-4">CMU Heinz College</span>
                         </div>
-                        <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
-                            <img src="class-rep.jpg" alt="Photo related to being a Class Representative" class="rounded-md mb-4 aspect-video object-cover">
+                        <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
                             <h4 class="text-xl font-semibold mb-2 card-title">Class Representative (4 Years)</h4>
-                            <p class="text-secondary flex-grow">Acted as the primary liaison between a cohort of 200+ students and university faculty, advocating for student needs and resolving academic issues.</p>
+                            <p class="text-secondary flex-grow">Primary liaison between 200+ students and university faculty, successfully advocating for academic improvements.</p>
+                            <span class="skill-tag py-1 px-3 rounded-md text-xs self-start mt-4">Student Government</span>
                         </div>
-                        <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
-                            <img src="rotaract-club.jpg" alt="Photo from the Rotaract Club" class="rounded-md mb-4 aspect-video object-cover">
-                            <h4 class="text-xl font-semibold mb-2 card-title">Rotaract Club Editorial Director (2 Years)</h4>
-                            <p class="text-secondary flex-grow">Led content strategy and communication initiatives for the university's Rotaract Club, driving member engagement and promoting community service events.</p>
+                        <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
+                            <h4 class="text-xl font-semibold mb-2 card-title">Rotaract Club Editorial Director</h4>
+                            <p class="text-secondary flex-grow">Led content strategy for the university's Rotaract Club, driving member engagement and community service.</p>
+                            <span class="skill-tag py-1 px-3 rounded-md text-xs self-start mt-4">Service & Outreach</span>
                         </div>
-                        <div class="glass-card rounded-lg p-6 flex flex-col animated-item">
-                            <img src="placement-coordinator.jpg" alt="Photo related to being a Student Placement Coordinator" class="rounded-md mb-4 aspect-video object-cover">
-                            <h4 class="text-xl font-semibold mb-2 card-title">Student Placement Co-ordinator (2 Years)</h4>
-                            <p class="text-secondary flex-grow">Elected to facilitate the campus recruitment process, connecting students with career opportunities and coordinating with corporate recruiters.</p>
+                        <div class="aesthetic-card rounded-lg p-6 flex flex-col animated-item">
+                            <h4 class="text-xl font-semibold mb-2 card-title">Student Placement Co-ordinator</h4>
+                            <p class="text-secondary flex-grow">Facilitated campus recruitment, connecting students with corporate recruiters and managing logistics.</p>
+                            <span class="skill-tag py-1 px-3 rounded-md text-xs self-start mt-4">Career Services</span>
                         </div>
-                    </div>
-                </div>
-
-                 <div class="mb-16 animated-item">
-                    <h3 class="text-3xl font-bold section-title mb-6">Awards</h3>
-                    <div class="glass-card rounded-lg p-6">
-                       <ul class="list-disc list-inside text-secondary space-y-2">
-                            <li class="flex items-center"><span class="award-tag mr-2 py-0.5 px-2 rounded-sm text-xs font-bold">AWARD</span> Recipient of the AWS Customer Obsession Award</li>
-                            <li class="flex items-center"><span class="award-tag mr-2 py-0.5 px-2 rounded-sm text-xs font-bold">AWARD</span> Best Paper Award at IEEE ICAIT 2024</li>
-                       </ul>
                     </div>
                 </div>
             </div>
@@ -439,62 +398,51 @@
 
         <section id="connect-page" class="page-content">
              <div class="min-h-[85vh] flex items-center justify-center text-center">
-                <div class="animated-item">
+                <div class="aesthetic-card rounded-lg p-10 max-w-xl mx-auto animated-item">
                     <h2 class="text-4xl font-bold mb-4 section-title">Let's Connect</h2>
                     <p class="text-xl text-secondary max-w-2xl mx-auto mb-8">
-                        I'm currently open to new opportunities and collaborations. Feel free to reach out if you have a project in mind or just want to connect!
+                        I am currently looking for full-time opportunities starting in Fall 2026. Reach out if you'd like to collaborate or discuss innovative tech solutions!
                     </p>
-                    <a href="mailto:menakagowda2002@gmail.com" class="btn-secondary font-semibold py-3 px-8 rounded-lg transition-transform transform hover:scale-105 inline-block mb-8">
-                        Say Hello
+                    <a href="mailto:menakagowda2002@gmail.com" class="btn-primary font-semibold py-3 px-8 rounded-lg transition inline-block mb-8">
+                        Email Me
                     </a>
                     <div class="flex justify-center space-x-6">
-                        <a href="https://github.com/Menaka-gowda" target="_blank" class="social-icon transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg>
-                        </a>
-                        <a href="https://www.instagram.com/menaka_gowda27/" target="_blank" class="social-icon transition">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/menaka-gowda-ananda" target="_blank" class="social-icon transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-                        </a>
+                        <a href="https://github.com/Menaka-gowda" target="_blank" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></a>
+                        <a href="https://www.instagram.com/menaka_gowda27/" target="_blank" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+                        <a href="https://www.linkedin.com/in/menaka-gowda-ananda" target="_blank" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="text-center py-8 border-t footer-border">
-        <p class="text-muted">&copy; 2024 Menaka Gowda Ananda. All Rights Reserved.</p>
+    <footer class="text-center py-8 border-t" style="border-color: var(--accent-secondary);">
+        <p class="text-secondary">&copy; 2024 Menaka Gowda Ananda. All Rights Reserved.</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const pageContents = document.querySelectorAll('.page-content');
-            // Simplified link selection for reliability
             const allNavLinks = document.querySelectorAll('a[onclick^="showPage"]'); 
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
 
-            // --- Spotlight & 3D Tilt Effect ---
-            document.querySelectorAll('.glass-card').forEach(card => {
+            // --- Card Shadow Tilt Effect (Removed Spotlight for a cleaner aesthetic) ---
+            document.querySelectorAll('.aesthetic-card').forEach(card => {
                 card.addEventListener('mousemove', e => {
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
                     
-                    // Spotlight
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
-
                     // 3D Tilt (Subtle for a minimalist theme)
                     const { width, height } = rect;
-                    const rotateX = (y / height - 0.5) * -5; 
-                    const rotateY = (x / width - 0.5) * 5; 
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    const rotateX = (y / height - 0.5) * -2; // Reduced tilt
+                    const rotateY = (x / width - 0.5) * 2; // Reduced tilt
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                 });
 
                 card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
                 });
             });
 
@@ -520,8 +468,6 @@
             });
             
             window.showPage = (pageId) => {
-                console.log(`Switching to page: ${pageId}`); // Debug: confirm function runs
-
                 // Hide all pages and clear animations
                 pageContents.forEach(page => {
                     page.classList.remove('active-page');
@@ -537,8 +483,6 @@
                     
                     // Re-observe animations for the new active page
                     activePage.querySelectorAll('.animated-item, .stagger-container').forEach(el => observer.observe(el));
-                } else {
-                    console.error(`Page element not found for ID: ${pageId}-page`); // Debug: check if page ID is correct
                 }
 
                 // Update active nav link style
