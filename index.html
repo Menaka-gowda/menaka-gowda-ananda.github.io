@@ -10,12 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #18181b; /* Zinc 900 */
-            --text-primary: #f4f4f5; /* Zinc 100 */
-            --text-secondary: #a1a1aa; /* Zinc 400 */
-            --accent-primary: #60a5fa; /* Blue 400 */
-            --accent-secondary: #c084fc; /* Purple 400 */
-            --card-bg: #27272a; /* Zinc 800 */
+            /* --- NEW COLOR PALETTE --- */
+            --bg-color: #000000; /* Black */
+            --text-primary: #ffffff; /* White */
+            --text-secondary: #c4c4c4; /* Adjusted from user input for readability on black background */
+            --accent-primary: #00415a; /* Dark Teal/Blue - Used for timeline/main line */
+            --accent-secondary: #ffcccc; /* Light Pink - Used for buttons/secondary line */
+            --card-bg: #001f2b; /* Very Dark Blue/Teal - Used for card background base */
         }
 
         @keyframes gradient-animation {
@@ -26,7 +27,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(-45deg, #18181b, #1a202c, #27272a, #2d3748);
+            /* Gradient uses new dark colors */
+            background: linear-gradient(-45deg, #000000, #000f1a, #001f2b, #101010); 
             background-size: 400% 400%;
             animation: gradient-animation 20s ease infinite;
             color: var(--text-secondary);
@@ -40,13 +42,15 @@
         
         /* General Design */
         .gradient-text {
+            /* Gradient from Primary Accent (Dark Teal) to Secondary Accent (Light Pink) */
             background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .glass-card {
-            background: rgba(39, 39, 42, 0.6);
+            /* Background uses transparent version of the new --card-bg (#001f2b -> 0, 31, 43) */
+            background: rgba(0, 31, 43, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -88,17 +92,19 @@
         }
         .btn-primary {
             background-color: var(--accent-primary);
-            color: #18181b;
+            color: var(--text-primary); /* Text color changed to white for contrast on dark accent */
         }
         .btn-primary:hover {
             background-color: var(--accent-secondary);
+            color: #18181b; /* Dark text on light accent */
         }
         .btn-secondary {
             background-color: var(--accent-secondary);
-            color: #18181b;
+            color: #18181b; /* Dark text on light accent */
         }
         .btn-secondary:hover {
              background-color: var(--accent-primary);
+             color: var(--text-primary); /* Light text on dark accent */
         }
         .section-title {
             color: var(--text-primary);
@@ -107,19 +113,19 @@
             color: var(--accent-primary);
         }
         .text-muted {
-            color: #71717a; /* Zinc 500 */
+            color: #71717a; /* Zinc 500 (Kept as dark grey for date contrast) */
         }
         .skill-tag {
             background-color: var(--card-bg);
             color: var(--text-primary);
         }
         .cert-tag {
-            background-color: var(--accent-primary);
-            color: #18181b;
+            background-color: var(--accent-primary); /* Dark Teal */
+            color: var(--text-primary); /* White text for contrast */
         }
         .award-tag {
-            background-color: #f59e0b; /* Amber 500 */
-            color: #18181b;
+            background-color: #663300; /* Dark Brown */
+            color: var(--text-primary); /* White text for contrast */
         }
         .social-icon {
             color: var(--text-secondary);
@@ -130,10 +136,10 @@
             transform: scale(1.1);
         }
         .footer-border {
-            border-color: #27272a; /* Zinc 800 */
+            border-color: var(--card-bg); 
         }
 
-        /* --- Scroll Animation Classes (Restored) --- */
+        /* --- Scroll Animation Classes --- */
         .animated-item {
             opacity: 0;
             transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -154,7 +160,7 @@
             transform: scale(0.95);
         }
 
-        /* --- Resume Timeline Design (Restored) --- */
+        /* --- Resume Timeline Design --- */
         .timeline-container {
             position: relative;
         }
@@ -167,7 +173,7 @@
             bottom: 0;
             width: 3px;
             background-color: var(--accent-primary);
-            opacity: 0.3;
+            opacity: 0.5; /* Increased opacity for visibility */
             border-radius: 2px;
         }
         .timeline-item {
@@ -293,7 +299,7 @@
                          <div class="glass-card rounded-lg p-6 animated-item timeline-item fade-in-up">
                             <div class="flex justify-between items-baseline">
                                 <h4 class="text-xl font-semibold card-title">Technical Consultant Intern</h4>
-                                <p class="text-muted text-sm">April 2023 - June 2023</p>
+                            <p class="text-muted text-sm">April 2023 - June 2023</p>
                             </div>
                             <p class="font-medium mb-2">Adobe Systems India Private Limited</p>
                             <ul class="list-disc list-inside text-secondary space-y-1">
@@ -524,7 +530,6 @@
             const applyParallax = () => {
                 if (profileImage && homeSection) {
                     const rect = homeSection.getBoundingClientRect();
-                    // Calculate movement based on scroll position relative to viewport center
                     const center = rect.top + rect.height / 2;
                     const movement = (window.innerHeight / 2 - center) / 20; 
 
@@ -547,7 +552,7 @@
                     card.style.setProperty('--mouse-y', `${y}px`);
 
                     const { width, height } = rect;
-                    // Tilt effect is reduced to be subtle, preventing distortion
+                    // Subtle tilt effect
                     const rotateX = (y / height - 0.5) * -5; 
                     const rotateY = (x / width - 0.5) * 5;  
                     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
@@ -590,6 +595,7 @@
             // --- Intersection Observer for Active Navigation Link (Handles scrollspy) ---
             const sectionIdToLinkMap = new Map();
             sections.forEach(section => {
+                // Map the section ID to the header navigation link
                 sectionIdToLinkMap.set(section.id, document.querySelector(`#header a[href="#${section.id}"]`));
             });
 
@@ -603,6 +609,7 @@
                         
                         // Add 'active' to the relevant links
                         const mainNavLink = sectionIdToLinkMap.get(sectionId);
+                        // Find the corresponding mobile link using the href attribute
                         const mobileNavLink = document.querySelector(`#mobile-menu a[href="#${sectionId}"]`);
                         
                         if (mainNavLink) { mainNavLink.classList.add('active'); }
